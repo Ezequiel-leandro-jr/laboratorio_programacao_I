@@ -9,31 +9,43 @@ def deletar(portfolio, placa):
             funcao_exibir(veiculo)
             n = '4'
             while n == '4':
-                n = input('EXCLUIR [1]\nNOVA BUSCA [2]\nVOLTAR AO MENU [3]\n>>> ')
+                n = input('DELETAR [1]\nNOVA BUSCA [2]\nVOLTAR AO MENU [3]\n>>> ')
                 match n:
                     case '1':
                         portfolio.remove(veiculo)
-                        print('REGISTRO REMOVIDO COM SUCESSO!')
+                        print('VEICULO DELETADO COM SUCESSO!')
                         time.sleep(2)
                         n = '0'
                         while n == '0':
-                            n = input('DELETAR OUTRO REGISTRO [1]\nVOLTAR AO MENU [2]')
+                            n = input('DELETAR OUTRO VEICULO [1]\nVOLTAR AO MENU [2]')
                             if n == '1':
-                                print('')
+                                placa = input('PLACA: ')
                             elif n == '2':
-                                break
+                                return
                             else:
                                 print('Erro: opcao invalida!')
+                                n = '0'
                                 time.sleep(1)        
                     case '2':
-                        print('')
+                        placa = input('PLACA: ')
                         n = '5'
                     case '3':
                         n = '5'
-                        break
+                        return
                     case _:
                         print('ERRO: opcao invalida!')
                         n = '4'
                         time.sleep(1)
-                
+        else:
+            print('ERRO: Veículo não encontrado!')
+            while True:
+                n = input('NOVA DELEÇÃO [1]\nVOLTAR AO MENU [2]\n>> ')
+                if n == '1':
+                    placa = input('PLACA: ')
+                    break  
+                elif n == '2':
+                    return 
+                else:
+                    print('ERRO: Opção inválida!')
+                    time.sleep(1)        
             

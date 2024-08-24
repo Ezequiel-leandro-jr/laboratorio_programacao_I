@@ -34,7 +34,7 @@ while True:
             listar(portfolio)
         case '5':
             placa = input('PLACA: ')
-            deletar(portfolio)
+            deletar(portfolio, placa)
         case '0':
             print('SAINDO DO SISTEMA...')
             time.sleep(1)
