@@ -1,6 +1,7 @@
 from funcao_busca import funcao_busca
 from funcao_exibir import funcao_exibir
 from crud_editar import editar
+from crud_deletar import deletar
 import time
 
 def buscar(portfolio):
@@ -15,7 +16,7 @@ def buscar(portfolio):
                     editar(portfolio)
                     break
                 case '2':
-                    excluir(portfolio)
+                    deletar(portfolio)
                     break
                 case '3':
                     break

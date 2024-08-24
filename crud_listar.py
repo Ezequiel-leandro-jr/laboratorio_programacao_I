@@ -12,12 +12,10 @@ def listar(portfolio):
     ANO: {veiculo.ano_fabricacao} | COR: {veiculo.cor} | PORTAS: {veiculo.portas} | COMBUSTIVEL: {veiculo.combustivel}
     ESTADO: {veiculo.conservacao} | QUILOMETRAGEM: {veiculo.quilometragem:.2f}Km | PRECO: R${veiculo.preco:.2f}
     STATUS: {veiculo.status}
-    ______________________________________________________________________________________________________________________
-
-    ''')
+    ______________________________________________________________________________________________________________________''')
             i += 1
         
-        n = input('VOLTAR AO MENU [1]')
+        n = input('VOLTAR AO MENU [1]\n>>> ')
         if n != '1':
             print('ERRO: opcao invalida!')
             time.sleep(1)
