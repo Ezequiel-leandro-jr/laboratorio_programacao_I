@@ -29,7 +29,7 @@ def cadastrar(portfolio):
                 case '1':
                     tipo = 'Camioneta'
                 case '2':
-                    tipo = 'Camionhonete'
+                    tipo = 'Caminhonete'
                 case '3':
                     tipo = 'Caminhao'
                 case '4':
