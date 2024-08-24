@@ -2,9 +2,9 @@ from funcao_busca import funcao_busca
 from funcao_exibir import funcao_exibir
 import time
 
-def deletar(portfolio):
+def deletar(portfolio, placa):
     while True:
-        veiculo = funcao_busca(portfolio)
+        veiculo = funcao_busca(portfolio, placa)
         if veiculo:
             funcao_exibir(veiculo)
             n = '4'

@@ -25,12 +25,15 @@ while True:
         case '1':
             cadastrar(portfolio)
         case '2':
-            buscar(portfolio)
+            placa = input('PLACA: ')
+            buscar(portfolio, placa)
         case '3':
-            editar(portfolio)
+            placa = input('PLACA: ')
+            editar(portfolio, placa)
         case '4':
             listar(portfolio)
         case '5':
+            placa = input('PLACA: ')
             deletar(portfolio)
         case '0':
             print('SAINDO DO SISTEMA...')

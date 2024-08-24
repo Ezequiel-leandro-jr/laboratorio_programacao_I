@@ -3,17 +3,16 @@ from classe_veiculo import Veiculo
 from funcao_exibir import funcao_exibir
 import time
 
-def editar(portfolio):
+def editar(portfolio, placa):
     while True:
-        veiculo = funcao_busca(portfolio)
+        veiculo = funcao_busca(portfolio, placa)
         
         if veiculo:
             indice = portfolio.index(veiculo)
-            op = '3'
-            while op == '3':
+            while True:
                 print('DESEJA ALTERAR O VEICULO ABAIXO?')
                 funcao_exibir(veiculo)
-                op = input('1. Sim   2. Não\n>> ')
+                op = input('1. Sim   2. Não\n>> ') 
                 if op == '1':
                     while True:
                         funcao_exibir(veiculo)
@@ -100,14 +99,14 @@ OP: ''')
 
                         portfolio[indice] = veiculo
 
-                        n = input('EDICÃO REALIZADA COM SUCESSO!\nEDITAR OUTRO CAMPO [1]\nEDITAR NOVO VEICULO [2]\nVOLTAR AO MENU [3]\n>> ')
+                        n = input('EDIÇÃO REALIZADA COM SUCESSO!\nEDITAR OUTRO CAMPO [1]\nEDITAR NOVO VEICULO [2]\nVOLTAR AO MENU [3]\n>> ')
                         if n == '1':
                             continue
                         elif n == '2':
-                            op = '3'
-                            break
+                            placa = input('PLACA: ')
+                            break  
                         elif n == '3':
-                            return
+                            return 
                         else:
                             print('ERRO: opção inválida!')
                             time.sleep(1)
@@ -115,25 +114,26 @@ OP: ''')
                     while True:
                         n = input('EDITAR NOVO VEICULO [1]\nVOLTAR AO MENU [2]\n>> ')
                         if n == '1':
+                            placa = input('PLACA: ')
                             break
                         elif n == '2':
-                            return
+                            return  
                         else:
                             print('ERRO: Opção inválida!')
                             time.sleep(1)
+                    break
                 else:
                     print('ERRO: Opção inválida!')
-                    op = '3'
                     time.sleep(1)
         else:
             print('ERRO: Veículo não encontrado!')
-
             while True:
                 n = input('EDITAR NOVO VEICULO [1]\nVOLTAR AO MENU [2]\n>> ')
                 if n == '1':
-                    break
+                    placa = input('PLACA: ')
+                    break  
                 elif n == '2':
-                    return
+                    return 
                 else:
                     print('ERRO: Opção inválida!')
                     time.sleep(1)
