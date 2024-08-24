@@ -99,16 +99,13 @@ OP: ''')
 
                         portfolio[indice] = veiculo
 
-                        n = input('EDIÇÃO REALIZADA COM SUCESSO!\nEDITAR OUTRO CAMPO [1]\nEDITAR NOVO VEICULO [2]\nVOLTAR AO MENU [3]\n>> ')
+                        n = input('EDIÇÃO REALIZADA COM SUCESSO!\nNOVA EDICAO [1]\nVOLTAR AO MENU [2]\n>> ')
                         if n == '1':
-                            continue
-                        elif n == '2':
-                            placa = input('PLACA: ')
                             break  
-                        elif n == '3':
+                        elif n == '2':
                             return 
                         else:
-                            print('ERRO: opção inválida!')
+                            print('ERRO: opcao invalida!')
                             time.sleep(1)
                 elif op == '2':
                     while True:
