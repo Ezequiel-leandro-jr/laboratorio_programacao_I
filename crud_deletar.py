@@ -13,17 +13,17 @@ def deletar(portfolio, placa):
                 match n:
                     case '1':
                         portfolio.remove(veiculo)
-                        print('VEICULO DELETADO COM SUCESSO!')
+                        print('VEÍCULO DELETADO COM SUCESSO!')
                         time.sleep(2)
                         n = '0'
                         while n == '0':
-                            n = input('DELETAR OUTRO VEICULO [1]\nVOLTAR AO MENU [2]')
+                            n = input('DELETAR OUTRO VEÍCULO [1]\nVOLTAR AO MENU [2]')
                             if n == '1':
                                 placa = input('PLACA: ')
                             elif n == '2':
                                 return
                             else:
-                                print('Erro: opcao invalida!')
+                                print('Erro: opção inválida!')
                                 n = '0'
                                 time.sleep(1)        
                     case '2':
@@ -33,7 +33,7 @@ def deletar(portfolio, placa):
                         n = '5'
                         return
                     case _:
-                        print('ERRO: opcao invalida!')
+                        print('ERRO: opção inválida!')
                         n = '4'
                         time.sleep(1)
         else:

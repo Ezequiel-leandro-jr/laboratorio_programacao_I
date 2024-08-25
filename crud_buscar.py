@@ -9,7 +9,7 @@ def buscar(portfolio, placa):
         veiculo = funcao_busca(portfolio, placa)
         if veiculo:
             funcao_exibir(veiculo)
-            op = input('EDITAR [1]\nEXCLUIR [2]\nNOVA BUSCA [3]\nVOLTAR AO MENU [4]\n>>> ')
+            op = input('EDITAR [1]\nDELETAR [2]\nNOVA BUSCA [3]\nVOLTAR AO MENU [4]\n>>> ')
             match op:
                 case '1':
                     editar(portfolio, placa)
@@ -23,7 +23,7 @@ def buscar(portfolio, placa):
                 case '4':
                     return
                 case _:
-                    print('ERRO: opcao invalida!')
+                    print('ERRO: opção inválida!')
                     time.sleep(1)
         else:
             print('ERRO: Veículo não encontrado!')
