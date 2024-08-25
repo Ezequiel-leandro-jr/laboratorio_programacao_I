@@ -6,6 +6,7 @@ from crud_listar import listar
 from crud_deletar import deletar
 from cabecalhos import titulo_automarket, titulo_buscar, titulo_deletar, titulo_editar, titulo_registrar
 import time
+import os
 
 portfolio = []
 while True:
@@ -38,7 +39,9 @@ OP: ''')
             placa = input('PLACA: ')
             deletar(portfolio, placa)
         case '0':
-            print('SAINDO DO SISTEMA...')
+            os.system('cls' if os.name == 'nt' else 'clear')
+            titulo_automarket()
+            print('\nSAINDO DO SISTEMA...')
             time.sleep(1)
             break
         case _:
