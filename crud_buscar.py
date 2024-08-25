@@ -4,11 +4,15 @@ from crud_editar import editar
 from crud_deletar import deletar
 from cabecalhos import titulo_automarket, titulo_buscar, titulo_deletar, titulo_editar, titulo_registrar
 import time
+import os
 
 def buscar(portfolio, placa):
     while True:
         veiculo = funcao_busca(portfolio, placa)
         if veiculo:
+            os.system('cls' if os.name == 'nt' else 'clear')
+            titulo_automarket()
+            titulo_buscar()
             funcao_exibir(veiculo)
             op = input('EDITAR [1]\nDELETAR [2]\nNOVA BUSCA [3]\nVOLTAR AO MENU [4]\n>>> ')
             match op:
@@ -24,17 +28,23 @@ def buscar(portfolio, placa):
                 case '4':
                     return
                 case _:
-                    print('ERRO: opção inválida!')
+                    print('\nERRO: opção inválida!')
                     time.sleep(1)
         else:
-            print('ERRO: Veículo não encontrado!')
             while True:
+                os.system('cls' if os.name == 'nt' else 'clear')
+                titulo_automarket()
+                titulo_buscar()
+                print('ERRO: Veículo não encontrado!')
                 n = input('NOVA BUSCA [1]\nVOLTAR AO MENU [2]\n>> ')
                 if n == '1':
+                    os.system('cls' if os.name == 'nt' else 'clear')
+                    titulo_automarket()
+                    titulo_buscar()
                     placa = input('PLACA: ')
                     break  
                 elif n == '2':
                     return 
                 else:
-                    print('ERRO: Opção inválida!')
+                    print('\nERRO: Opção inválida!')
                     time.sleep(1)
