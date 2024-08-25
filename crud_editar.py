@@ -1,6 +1,7 @@
 from funcao_busca import funcao_busca
 from classe_veiculo import Veiculo
 from funcao_exibir import funcao_exibir
+from cabecalhos import titulo_automarket, titulo_buscar, titulo_deletar, titulo_editar, titulo_registrar
 import time
 
 def editar(portfolio, placa):

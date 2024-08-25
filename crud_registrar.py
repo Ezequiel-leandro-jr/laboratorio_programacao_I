@@ -3,6 +3,7 @@ import time
 from classe_veiculo import Veiculo
 from funcao_exibir import funcao_exibir
 from crud_listar import listar
+from cabecalhos import titulo_automarket, titulo_buscar, titulo_deletar, titulo_editar, titulo_registrar
 
     
 def cadastrar(portfolio):

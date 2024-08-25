@@ -1,5 +1,6 @@
 from crud_editar import editar
 from crud_deletar import deletar
+from cabecalhos import titulo_automarket, titulo_buscar, titulo_deletar, titulo_editar, titulo_registrar
 import time
 
 def listar(portfolio):
