@@ -4,7 +4,7 @@ from classe_veiculo import Veiculo
 from funcao_exibir import funcao_exibir
 from crud_listar import listar
 from cabecalhos import titulo_automarket, titulo_buscar, titulo_deletar, titulo_editar, titulo_registrar
-
+import os
     
 def cadastrar(portfolio):
     n = '0'
@@ -13,9 +13,14 @@ def cadastrar(portfolio):
         combustivel = '8'
         conservacao = '3'
         status = '5'
-            
+        os.system('cls' if os.name == 'nt' else 'clear')
+        titulo_automarket()
+        titulo_registrar()    
         placa = input('PLACA: ')
         while tipo == '8':
+            os.system('cls' if os.name == 'nt' else 'clear')
+            titulo_automarket()
+            titulo_registrar()
             tipo = input('''
     TIPO:
     1. Camioneta
@@ -43,16 +48,37 @@ def cadastrar(portfolio):
                 case '7':
                     tipo = 'Outro'
                 case _:
+                    os.system('cls' if os.name == 'nt' else 'clear')
+                    titulo_automarket()
+                    titulo_registrar()
                     print('ERRO: Opção inválida!')
                     tipo = '8'
                     time.sleep(1)
-            
+                    
+        os.system('cls' if os.name == 'nt' else 'clear')
+        titulo_automarket()
+        titulo_registrar()   
         marca = input('MARCA: ')
+        os.system('cls' if os.name == 'nt' else 'clear')
+        titulo_automarket()
+        titulo_registrar()
         modelo = input('MODELO: ')
+        os.system('cls' if os.name == 'nt' else 'clear')
+        titulo_automarket()
+        titulo_registrar()
         cor = input('COR: ')
+        os.system('cls' if os.name == 'nt' else 'clear')
+        titulo_automarket()
+        titulo_registrar()
         ano_fabricacao = input('ANO: ')
+        os.system('cls' if os.name == 'nt' else 'clear')
+        titulo_automarket()
+        titulo_registrar()
         portas = int(input('PORTAS: '))
         while combustivel == '8':
+            os.system('cls' if os.name == 'nt' else 'clear')
+            titulo_automarket()
+            titulo_registrar()
             combustivel = input('''
     TIPO:
     1. Gasolina
@@ -80,10 +106,16 @@ def cadastrar(portfolio):
                 case '7':
                     combustivel = 'Outro'
                 case _:
+                    os.system('cls' if os.name == 'nt' else 'clear')
+                    titulo_automarket()
+                    titulo_registrar()
                     print('ERRO: Opcao incorreta! Tente novamente!')
                     combustivel = '8'
                     time.sleep(1) 
         while conservacao == '3':
+            os.system('cls' if os.name == 'nt' else 'clear')
+            titulo_automarket()
+            titulo_registrar()
             conservacao = input('ESTADO DE CONSERVACAO:\n1. Novo\n2. Seminovo\n----------------\nOP: ')
             match conservacao:
                 case '1':
@@ -91,12 +123,24 @@ def cadastrar(portfolio):
                 case '2':
                     conservacao = 'Seminovo'
                 case _:
+                    os.system('cls' if os.name == 'nt' else 'clear')
+                    titulo_automarket()
+                    titulo_registrar()
                     print('ERRO: Opcao incorreta! Tente novamente!')
                     conservacao = '3'
-                    time.sleep(1)     
+                    time.sleep(1)
+        os.system('cls' if os.name == 'nt' else 'clear')
+        titulo_automarket()
+        titulo_registrar()     
         quilometragem = float(input('QUILOMETRAGEM (KM): '))
+        os.system('cls' if os.name == 'nt' else 'clear')
+        titulo_automarket()
+        titulo_registrar()
         preco = float(input('PREÇO (R$): '))
         while status == '5':
+            os.system('cls' if os.name == 'nt' else 'clear')
+            titulo_automarket()
+            titulo_registrar()
             status = input('STATUS:\n1. A venda\n2. Reservado\n3. Vendido\n4. Indisponivel\n----------------\nOP: ')
             match status:
                 case '1':
@@ -108,26 +152,35 @@ def cadastrar(portfolio):
                 case '4':
                     status = 'Indisponivel'
                 case _:
+                    os.system('cls' if os.name == 'nt' else 'clear')
+                    titulo_automarket()
+                    titulo_registrar()
                     print('ERRO: Opcao incorreta! Tente novamente!')
                     status = '5'
                     time.sleep(1)              
         novo_veiculo = Veiculo(placa, tipo, marca, modelo, cor, ano_fabricacao, portas, combustivel, conservacao, quilometragem, preco, status)
-        print('REGISTRO REALIZADO COM SUCESSO!')
         portfolio.append(novo_veiculo)
-        funcao_exibir(novo_veiculo)
+        
         
         n = '3'
         while n == '3':
+            os.system('cls' if os.name == 'nt' else 'clear')
+            titulo_automarket()
+            titulo_registrar()
+            print('REGISTRO REALIZADO COM SUCESSO!')
+            funcao_exibir(novo_veiculo)
             n = input('NOVO REGISTRO [1]\nLISTAR VEÍCULOS [2]\nVOLTAR AO MENU [3]\n>>> ')
             if n == '1':
-                print('')
                 n = '0'
             elif n == '2':
                 listar(portfolio)
                 return
             elif n == '3':
-                print('')
+                return
             else:
+                os.system('cls' if os.name == 'nt' else 'clear')
+                titulo_automarket()
+                titulo_registrar()
                 print('ERRO: opção inválida!')
                 n = '3'
                 time.sleep(1)
