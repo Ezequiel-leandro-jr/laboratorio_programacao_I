@@ -6,6 +6,9 @@ import os
 
 def deletar(portfolio, placa):
     while True:
+        os.system('cls' if os.name == 'nt' else 'clear')
+        titulo_automarket()
+        titulo_deletar()
         veiculo = funcao_busca(portfolio, placa)
         if veiculo:
             n = '4'

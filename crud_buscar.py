@@ -8,6 +8,9 @@ import os
 
 def buscar(portfolio, placa):
     while True:
+        os.system('cls' if os.name == 'nt' else 'clear')
+        titulo_automarket()
+        titulo_buscar()
         veiculo = funcao_busca(portfolio, placa)
         if veiculo:
             os.system('cls' if os.name == 'nt' else 'clear')

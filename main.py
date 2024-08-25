@@ -4,12 +4,13 @@ from crud_editar import editar
 from crud_buscar import buscar
 from crud_listar import listar
 from crud_deletar import deletar
-from cabecalhos import titulo_automarket, titulo_buscar, titulo_deletar, titulo_editar, titulo_registrar
+from cabecalhos import titulo_automarket, titulo_buscar, titulo_deletar, titulo_editar, titulo_registrar, titulo_listar
 import time
 import os
 
 portfolio = []
 while True:
+    os.system('cls' if os.name == 'nt' else 'clear')
     titulo_automarket()
     op = input('''
          MENU
@@ -28,14 +29,23 @@ OP: ''')
         case '1':
             cadastrar(portfolio)
         case '2':
+            os.system('cls' if os.name == 'nt' else 'clear')
+            titulo_automarket()
+            titulo_buscar()
             placa = input('PLACA: ')
             buscar(portfolio, placa)
         case '3':
+            os.system('cls' if os.name == 'nt' else 'clear')
+            titulo_automarket()
+            titulo_editar()
             placa = input('PLACA: ')
             editar(portfolio, placa)
         case '4':
             listar(portfolio)
         case '5':
+            os.system('cls' if os.name == 'nt' else 'clear')
+            titulo_automarket()
+            titulo_deletar()
             placa = input('PLACA: ')
             deletar(portfolio, placa)
         case '0':
@@ -45,5 +55,7 @@ OP: ''')
             time.sleep(1)
             break
         case _:
-            print('ERRO: OPCAO INVALIDA!')
+            os.system('cls' if os.name == 'nt' else 'clear')
+            titulo_automarket()
+            print('\nERRO: OPCAO INVALIDA!')
             time.sleep(1)
