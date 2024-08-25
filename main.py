@@ -9,17 +9,17 @@ import time
 portfolio = []
 while True:
     op = input('''
-    MENU
-    ---------------------
-    1. REGISTRAR VEICULO
-    2. BUSCAR VEICULO
-    3. EDITAR VEICULO
-    4. LISTAR PORTFOLIO
-    5. DELETAR VEICULO
+MENU
+---------------------
+1. REGISTRAR VEICULO
+2. BUSCAR VEICULO
+3. EDITAR VEICULO
+4. LISTAR PORTFOLIO
+5. DELETAR VEICULO
 
-    0. SAIR DO SISTEMA
-    ---------------------
-    OP: ''')
+0. SAIR DO SISTEMA
+---------------------
+OP: ''')
 
     match op:
         case '1':
