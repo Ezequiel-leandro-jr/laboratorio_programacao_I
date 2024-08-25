@@ -89,22 +89,22 @@ OP: ''')
                                     veiculo.status = status_opcoes[int(status) - 1]
                                     break
                                 else:
-                                    print('ERRO: Opção incorreta! Tente novamente!')
+                                    print('ERRO: Opção inválida!')
                                     time.sleep(1)
                         else:
-                            print('ERRO: Opção incorreta! Tente novamente!')
+                            print('ERRO: Opção inválida!')
                             time.sleep(1)
                             continue
 
                         portfolio[indice] = veiculo
 
-                        n = input('EDIÇÃO REALIZADA COM SUCESSO!\nNOVA EDICAO [1]\nVOLTAR AO MENU [2]\n>> ')
+                        n = input('EDIÇÃO REALIZADA COM SUCESSO!\nNOVA EDIÇÃO [1]\nVOLTAR AO MENU [2]\n>> ')
                         if n == '1':
                             break  
                         elif n == '2':
                             return 
                         else:
-                            print('ERRO: opcao invalida!')
+                            print('ERRO: opção inválida!')
                             time.sleep(1)
                 elif op == '2':
                     placa = input('PLACA: ')
@@ -117,7 +117,7 @@ OP: ''')
         else:
             print('ERRO: Veículo não encontrado!')
             while True:
-                n = input('EDITAR NOVO VEICULO [1]\nVOLTAR AO MENU [2]\n>> ')
+                n = input('EDITAR NOVO VEÍCULO [1]\nVOLTAR AO MENU [2]\n>> ')
                 if n == '1':
                     placa = input('PLACA: ')
                     break  

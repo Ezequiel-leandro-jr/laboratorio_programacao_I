@@ -2,6 +2,7 @@
 import time
 from classe_veiculo import Veiculo
 from funcao_exibir import funcao_exibir
+from crud_listar import listar
 
     
 def cadastrar(portfolio):
@@ -18,7 +19,7 @@ def cadastrar(portfolio):
     TIPO:
     1. Camioneta
     2. Caminhonete
-    3. Caminhao
+    3. Caminhão
     4. Carro
     5. Carreta
     6. Motocicleta
@@ -31,7 +32,7 @@ def cadastrar(portfolio):
                 case '2':
                     tipo = 'Caminhonete'
                 case '3':
-                    tipo = 'Caminhao'
+                    tipo = 'Caminhão'
                 case '4':
                     tipo = 'Carro'
                 case '5':
@@ -41,7 +42,7 @@ def cadastrar(portfolio):
                 case '7':
                     tipo = 'Outro'
                 case _:
-                    print('ERRO: Opcao incorreta! Tente novamente!')
+                    print('ERRO: Opção inválida!')
                     tipo = '8'
                     time.sleep(1)
             
@@ -93,7 +94,7 @@ def cadastrar(portfolio):
                     conservacao = '3'
                     time.sleep(1)     
         quilometragem = float(input('QUILOMETRAGEM (KM): '))
-        preco = float(input('PRECO (R$): '))
+        preco = float(input('PREÇO (R$): '))
         while status == '5':
             status = input('STATUS:\n1. A venda\n2. Reservado\n3. Vendido\n4. Indisponivel\n----------------\nOP: ')
             match status:
@@ -110,20 +111,23 @@ def cadastrar(portfolio):
                     status = '5'
                     time.sleep(1)              
         novo_veiculo = Veiculo(placa, tipo, marca, modelo, cor, ano_fabricacao, portas, combustivel, conservacao, quilometragem, preco, status)
-        print('CADASTRO REALIZADO COM SUCESSO!')
+        print('REGISTRO REALIZADO COM SUCESSO!')
         portfolio.append(novo_veiculo)
         funcao_exibir(novo_veiculo)
         
         n = '3'
         while n == '3':
-            n = input('NOVO CADASTRO [1]\nVOLTAR AO MENU [2]\n>>> ')
+            n = input('NOVO REGISTRO [1]\nLISTAR VEÍCULOS [2]\nVOLTAR AO MENU [3]\n>>> ')
             if n == '1':
                 print('')
                 n = '0'
             elif n == '2':
+                listar(portfolio)
+                return
+            elif n == '3':
                 print('')
             else:
-                print('ERRO: opcao invalida!')
+                print('ERRO: opção inválida!')
                 n = '3'
                 time.sleep(1)
     

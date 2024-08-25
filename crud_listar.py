@@ -12,16 +12,16 @@ def listar(portfolio):
     VEICULO {i}:
     ----------------------------------------------------------------------------------------------------------------------
     PLACA: {veiculo.placa} | TIPO: {veiculo.tipo} | MARCA: {veiculo.marca} | MODELO: {veiculo.modelo}
-    ANO: {veiculo.ano_fabricacao} | COR: {veiculo.cor} | PORTAS: {veiculo.portas} | COMBUSTIVEL: {veiculo.combustivel}
-    ESTADO: {veiculo.conservacao} | QUILOMETRAGEM: {veiculo.quilometragem:.2f}Km | PRECO: R${veiculo.preco:.2f}
+    ANO: {veiculo.ano_fabricacao} | COR: {veiculo.cor} | PORTAS: {veiculo.portas} | COMBUSTÍVEL: {veiculo.combustivel}
+    ESTADO: {veiculo.conservacao} | QUILOMETRAGEM: {veiculo.quilometragem:.2f}Km | PREÇO: R${veiculo.preco:.2f}
     STATUS: {veiculo.status}
     ''')
             i += 1
             soma += 1
             
-        print(f'TOTAL DE VEICULOS: {soma}\n______________________________________________________________________________________________________________________')
+        print(f'TOTAL DE VEÍCULOS: {soma}\n______________________________________________________________________________________________________________________')
         while True:
-            n = input('\nEDITAR VEICULO [1]\nDELETAR VEICULO [2]\nVOLTAR AO MENU [3]\n>>> ')
+            n = input('\nEDITAR VEÍCULO [1]\nDELETAR VEÍCULO [2]\nVOLTAR AO MENU [3]\n>>> ')
             if n == '1':
                 placa = input('PLACA: ')
                 editar(portfolio, placa)
@@ -34,5 +34,5 @@ def listar(portfolio):
             elif n == '3':
                 return
             else:
-                print('ERRO: opcao invalida!')
+                print('ERRO: opção inválida!')
                 time.sleep(1)
