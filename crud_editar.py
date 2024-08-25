@@ -10,9 +10,8 @@ def editar(portfolio, placa):
         if veiculo:
             indice = portfolio.index(veiculo)
             while True:
-                print('DESEJA ALTERAR O VEICULO ABAIXO?')
                 funcao_exibir(veiculo)
-                op = input('1. Sim   2. Não\n>> ') 
+                op = input('CONTINUAR EDIÇÃO [1]\nEDITAR OUTRO VEÍCULO [2]\nVOLTAR AO MENU [3]\n>>> ') 
                 if op == '1':
                     while True:
                         funcao_exibir(veiculo)
@@ -108,17 +107,10 @@ OP: ''')
                             print('ERRO: opcao invalida!')
                             time.sleep(1)
                 elif op == '2':
-                    while True:
-                        n = input('EDITAR NOVO VEICULO [1]\nVOLTAR AO MENU [2]\n>> ')
-                        if n == '1':
-                            placa = input('PLACA: ')
-                            break
-                        elif n == '2':
-                            return  
-                        else:
-                            print('ERRO: Opção inválida!')
-                            time.sleep(1)
+                    placa = input('PLACA: ')
                     break
+                elif op == '3':
+                    return  
                 else:
                     print('ERRO: Opção inválida!')
                     time.sleep(1)
