@@ -14,17 +14,18 @@ def listar(portfolio):
         titulo_listar()
         for veiculo in portfolio:
             print(f'''
-    VEICULO {i}:
+    VEíCULO {i}:
     ----------------------------------------------------------------------------------------------------------------------
     PLACA: {veiculo.placa} | TIPO: {veiculo.tipo} | MARCA: {veiculo.marca} | MODELO: {veiculo.modelo}
     ANO: {veiculo.ano_fabricacao} | COR: {veiculo.cor} | PORTAS: {veiculo.portas} | COMBUSTÍVEL: {veiculo.combustivel}
     ESTADO: {veiculo.conservacao} | QUILOMETRAGEM: {veiculo.quilometragem:.2f}Km | PREÇO: R${veiculo.preco:.2f}
     STATUS: {veiculo.status}
-    ----------------------------------------------------------------------------------------------------------------------''')
+    ----------------------------------------------------------------------------------------------------------------------
+    ''')
             i += 1
             soma += 1
             
-        print(f'TOTAL DE VEÍCULOS: {soma}\n______________________________________________________________________________________________________________________')
+        print(f'\nTOTAL DE VEÍCULOS: {soma}\n ______________________________________________________________________________________________________________________')
             
         n = input('\nEDITAR VEÍCULO [1]\nDELETAR VEÍCULO [2]\nVOLTAR AO MENU [3]\n>>> ')
         if n == '1':

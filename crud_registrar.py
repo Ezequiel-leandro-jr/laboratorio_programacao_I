@@ -22,16 +22,16 @@ def cadastrar(portfolio):
             titulo_automarket()
             titulo_registrar()
             tipo = input('''
-    TIPO:
-    1. Camioneta
-    2. Caminhonete
-    3. Caminhão
-    4. Carro
-    5. Carreta
-    6. Motocicleta
-    7. Outro
-    ----------------
-    OP: ''')
+TIPO:
+1. Camioneta
+2. Caminhonete
+3. Caminhão
+4. Carro
+5. Carreta
+6. Motocicleta
+7. Outro
+----------------
+OP: ''')
             match tipo:
                 case '1':
                     tipo = 'Camioneta'
