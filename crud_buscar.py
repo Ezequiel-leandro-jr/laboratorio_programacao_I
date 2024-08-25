@@ -26,6 +26,9 @@ def buscar(portfolio, placa):
                     deletar(portfolio, placa)
                     break
                 case '3':
+                    os.system('cls' if os.name == 'nt' else 'clear')
+                    titulo_automarket()
+                    titulo_buscar()
                     placa = input('PLACA: ')
                     continue
                 case '4':

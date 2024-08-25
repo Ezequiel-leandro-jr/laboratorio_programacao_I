@@ -31,7 +31,7 @@ def deletar(portfolio, placa):
                             os.system('cls' if os.name == 'nt' else 'clear')
                             titulo_automarket()
                             titulo_deletar()
-                            n = input('DELETAR OUTRO VEÍCULO [1]\nVOLTAR AO MENU [2]')
+                            n = input('DELETAR OUTRO VEÍCULO [1]\nVOLTAR AO MENU [2]\n>>> ')
                             if n == '1':
                                 os.system('cls' if os.name == 'nt' else 'clear')
                                 titulo_automarket()
