@@ -22,7 +22,7 @@ def titulo_editar():
 --------------------------
 ''')
 
-def titulo_buscar():
+def titulo_listar():
     print('''
       LISTAGEM GERAL
 --------------------------
