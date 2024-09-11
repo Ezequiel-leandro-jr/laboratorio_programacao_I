@@ -16,7 +16,7 @@ def cadastrar(portfolio):
         os.system('cls' if os.name == 'nt' else 'clear')
         titulo_automarket()
         titulo_registrar()    
-        placa = input('PLACA: ')
+        placa = input('PLACA: ').strip()
         while tipo == '8':
             os.system('cls' if os.name == 'nt' else 'clear')
             titulo_automarket()

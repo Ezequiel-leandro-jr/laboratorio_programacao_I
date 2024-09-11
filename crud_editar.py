@@ -28,7 +28,7 @@ def editar(portfolio, placa):
                             os.system('cls' if os.name == 'nt' else 'clear')
                             titulo_automarket()
                             titulo_editar()
-                            veiculo.placa = input('PLACA: ')
+                            veiculo.placa = input('PLACA: ').strip()
                             portfolio[indice] = veiculo
                             os.system('cls' if os.name == 'nt' else 'clear')
                             titulo_automarket()
