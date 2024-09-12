@@ -1,299 +1,148 @@
+import customtkinter as ctk
 from funcao_busca import funcao_busca
 from classe_veiculo import Veiculo
 from funcao_exibir import funcao_exibir
-from cabecalhos import titulo_automarket, titulo_buscar, titulo_deletar, titulo_editar, titulo_registrar
-import time
-import os
+from cabecalhos import titulo_automarket, titulo_editar
+from persistencia import salva_banco, cria_banco
+import tkinter
 
-def editar(portfolio, placa):
-    while True:
-        veiculo = funcao_busca(portfolio, placa)
+portfolio = cria_banco()
 
-        if veiculo:
-            indice = portfolio.index(veiculo)
-            while True:
-                os.system('cls' if os.name == 'nt' else 'clear')
-                titulo_automarket()
-                titulo_editar()
-                funcao_exibir(veiculo)
-                op = input('CONTINUAR EDIÇÃO [1]\nEDITAR OUTRO VEÍCULO [2]\nVOLTAR AO MENU [3]\n>>> ') 
-                if op == '1':
-                    while True:
-                        os.system('cls' if os.name == 'nt' else 'clear')
-                        titulo_automarket()
-                        titulo_editar()
-                        funcao_exibir(veiculo)
-                        alterar = input('SELECIONE O CAMPO:\n1. Placa\n2. Tipo\n3. Marca\n4. Modelo\n5. Cor\n6. Ano de fabricação\n7. Portas\n8. Combustível\n9. Conservação\n10. Quilometragem\n11. Preço\n12. Status\n\n0. Voltar\n>> ')
-                        if alterar == '1':
-                            os.system('cls' if os.name == 'nt' else 'clear')
-                            titulo_automarket()
-                            titulo_editar()
-                            veiculo.placa = input('PLACA: ').strip()
-                            portfolio[indice] = veiculo
-                            os.system('cls' if os.name == 'nt' else 'clear')
-                            titulo_automarket()
-                            titulo_editar()
-                            print('\nEDIÇÃO REALIZADA COM SUCESSO!')
-                            time.sleep(2)
-                        elif alterar == '2':
-                            while True:
-                                os.system('cls' if os.name == 'nt' else 'clear')
-                                titulo_automarket()
-                                titulo_editar()
-                                tipo = input('''
-TIPO:
-1. Camioneta
-2. Caminhonete
-3. Caminhão
-4. Carro
-5. Carreta
-6. Motocicleta
-7. Outro
+# Configuração inicial do CustomTkinter
+ctk.set_appearance_mode("light")  # Tema claro
+ctk.set_default_color_theme("green")  # Tema verde
 
-0. Voltar
-----------------
-OP: ''')
-                                if tipo in ['1', '2', '3', '4', '5', '6', '7']:
-                                    tipos = ['Camioneta', 'Caminhonete', 'Caminhão', 'Carro', 'Carreta', 'Motocicleta', 'Outro']
-                                    veiculo.tipo = tipos[int(tipo) - 1]
-                                    portfolio[indice] = veiculo
-                                    os.system('cls' if os.name == 'nt' else 'clear')
-                                    titulo_automarket()
-                                    titulo_editar()
-                                    print('\nEDIÇÃO REALIZADA COM SUCESSO!')
-                                    time.sleep(2)
-                                    break
-                                elif tipo == '0':
-                                    os.system('cls' if os.name == 'nt' else 'clear')
-                                    titulo_automarket()
-                                    titulo_editar()
-                                    print('EDIÇÃO CANCELADA!')
-                                    time.sleep(2)
-                                    break
-                                else:
-                                    os.system('cls' if os.name == 'nt' else 'clear')
-                                    titulo_automarket()
-                                    titulo_editar()
-                                    print('\nERRO: Opção incorreta! Tente novamente!')
-                                    time.sleep(1)
-                        elif alterar == '3':
-                            os.system('cls' if os.name == 'nt' else 'clear')
-                            titulo_automarket()
-                            titulo_editar()
-                            veiculo.marca = input('MARCA: ')
-                            portfolio[indice] = veiculo
-                            os.system('cls' if os.name == 'nt' else 'clear')
-                            titulo_automarket()
-                            titulo_editar()
-                            print('\nEDIÇÃO REALIZADA COM SUCESSO!')
-                            time.sleep(2)
-                        elif alterar == '4':
-                            os.system('cls' if os.name == 'nt' else 'clear')
-                            titulo_automarket()
-                            titulo_editar()
-                            veiculo.modelo = input('MODELO: ')
-                            portfolio[indice] = veiculo
-                            os.system('cls' if os.name == 'nt' else 'clear')
-                            titulo_automarket()
-                            titulo_editar()
-                            print('\nEDIÇÃO REALIZADA COM SUCESSO!')
-                            time.sleep(2)
-                        elif alterar == '5':
-                            os.system('cls' if os.name == 'nt' else 'clear')
-                            titulo_automarket()
-                            titulo_editar()
-                            veiculo.cor = input('COR: ')
-                            portfolio[indice] = veiculo
-                            os.system('cls' if os.name == 'nt' else 'clear')
-                            titulo_automarket()
-                            titulo_editar()
-                            print('\nEDIÇÃO REALIZADA COM SUCESSO!')
-                            time.sleep(2)
-                        elif alterar == '6':
-                            os.system('cls' if os.name == 'nt' else 'clear')
-                            titulo_automarket()
-                            titulo_editar()
-                            veiculo.ano_fabricacao = input('ANO: ')
-                            portfolio[indice] = veiculo
-                            os.system('cls' if os.name == 'nt' else 'clear')
-                            titulo_automarket()
-                            titulo_editar()
-                            print('\nEDIÇÃO REALIZADA COM SUCESSO!')
-                            time.sleep(2)
-                        elif alterar == '7':
-                            os.system('cls' if os.name == 'nt' else 'clear')
-                            titulo_automarket()
-                            titulo_editar()
-                            veiculo.portas = int(input('PORTAS: '))
-                            portfolio[indice] = veiculo
-                            os.system('cls' if os.name == 'nt' else 'clear')
-                            titulo_automarket()
-                            titulo_editar()
-                            print('\nEDIÇÃO REALIZADA COM SUCESSO!')
-                            time.sleep(2)
-                        elif alterar == '8':
-                            while True:
-                                os.system('cls' if os.name == 'nt' else 'clear')
-                                titulo_automarket()
-                                titulo_editar()
-                                combustivel = input('''
-COMBUSTÍVEL:
-1. Gasolina
-2. GLP
-3. Etanol
-4. GNV
-5. Elétrico
-6. Híbrido
-7. Outro
+def editar_interface(portfolio, placa):
+    # Criando a janela principal para edição de veículos
+    root = ctk.CTk()
+    root.title("Editar Veículo")
+    root.geometry("800x600")
 
-0. Voltar
-----------------
-OP: ''')
-                                if combustivel in ['1', '2', '3', '4', '5', '6', '7']:
-                                    combustiveis = ['Gasolina', 'GLP', 'Etanol', 'GNV', 'Elétrico', 'Híbrido', 'Outro']
-                                    veiculo.combustivel = combustiveis[int(combustivel) - 1]
-                                    portfolio[indice] = veiculo
-                                    os.system('cls' if os.name == 'nt' else 'clear')
-                                    titulo_automarket()
-                                    titulo_editar()
-                                    print('\nEDIÇÃO REALIZADA COM SUCESSO!')
-                                    time.sleep(2)
-                                    break
-                                elif combustivel == '0':
-                                    os.system('cls' if os.name == 'nt' else 'clear')
-                                    titulo_automarket()
-                                    titulo_editar()
-                                    print('EDIÇÃO CANCELADA!')
-                                    time.sleep(2)
-                                    break
-                                else:
-                                    os.system('cls' if os.name == 'nt' else 'clear')
-                                    titulo_automarket()
-                                    titulo_editar()
-                                    print('ERRO: Opção incorreta! Tente novamente!')
-                                    time.sleep(1)
-                        elif alterar == '9':
-                            while True:
-                                os.system('cls' if os.name == 'nt' else 'clear')
-                                titulo_automarket()
-                                titulo_editar()
-                                conservacao = input('ESTADO DE CONSERVAÇÃO:\n1. Novo\n2. Seminovo\n\n\n0. Voltar\n----------------\nOP: ')
-                                if conservacao in ['1', '2']:
-                                    veiculo.conservacao = 'Novo' if conservacao == '1' else 'Seminovo'
-                                    portfolio[indice] = veiculo
-                                    os.system('cls' if os.name == 'nt' else 'clear')
-                                    titulo_automarket()
-                                    titulo_editar()
-                                    print('\nEDIÇÃO REALIZADA COM SUCESSO!')
-                                    time.sleep(2)
-                                    break
-                                elif conservacao == '0':
-                                    os.system('cls' if os.name == 'nt' else 'clear')
-                                    titulo_automarket()
-                                    titulo_editar()
-                                    print('EDIÇÃO CANCELADA!')
-                                    time.sleep(2)
-                                    break
-                                else:
-                                    os.system('cls' if os.name == 'nt' else 'clear')
-                                    titulo_automarket()
-                                    titulo_editar()
-                                    print('ERRO: Opção incorreta! Tente novamente!')
-                                    time.sleep(1)
-                        elif alterar == '10':
-                            os.system('cls' if os.name == 'nt' else 'clear')
-                            titulo_automarket()
-                            titulo_editar()
-                            veiculo.quilometragem = float(input('QUILOMETRAGEM (KM): '))
-                            portfolio[indice] = veiculo
-                            os.system('cls' if os.name == 'nt' else 'clear')
-                            titulo_automarket()
-                            titulo_editar()
-                            print('\nEDIÇÃO REALIZADA COM SUCESSO!')
-                            time.sleep(2)
-                        elif alterar == '11':
-                            os.system('cls' if os.name == 'nt' else 'clear')
-                            titulo_automarket()
-                            titulo_editar()
-                            veiculo.preco = float(input('PREÇO (R$): '))
-                            portfolio[indice] = veiculo
-                            os.system('cls' if os.name == 'nt' else 'clear')
-                            titulo_automarket()
-                            titulo_editar()
-                            print('\nEDIÇÃO REALIZADA COM SUCESSO!')
-                            time.sleep(2)
-                        elif alterar == '12':
-                            while True:
-                                os.system('cls' if os.name == 'nt' else 'clear')
-                                titulo_automarket()
-                                titulo_editar()
-                                status = input('STATUS:\n1. À venda\n2. Reservado\n3. Vendido\n4. Indisponível\n\n0. Voltar\n----------------\nOP: ')
-                                if status in ['1', '2', '3', '4']:
-                                    status_opcoes = ['À venda', 'Reservado', 'Vendido', 'Indisponível']
-                                    veiculo.status = status_opcoes[int(status) - 1]
-                                    portfolio[indice] = veiculo
-                                    os.system('cls' if os.name == 'nt' else 'clear')
-                                    titulo_automarket()
-                                    titulo_editar()
-                                    print('\nEDIÇÃO REALIZADA COM SUCESSO!')
-                                    time.sleep(2)
-                                    break
-                                elif status == '0':
-                                    os.system('cls' if os.name == 'nt' else 'clear')
-                                    titulo_automarket()
-                                    titulo_editar()
-                                    print('EDIÇÃO CANCELADA!')
-                                    time.sleep(2)
-                                    break
-                                else:
-                                    os.system('cls' if os.name == 'nt' else 'clear')
-                                    titulo_automarket()
-                                    titulo_editar()
-                                    print('ERRO: Opção inválida!')
-                                    time.sleep(1)
-                        elif alterar == '0':
-                            break
-                        else:
-                            os.system('cls' if os.name == 'nt' else 'clear')
-                            titulo_automarket()
-                            titulo_editar()
-                            print('ERRO: Opção inválida!')
-                            time.sleep(1)
-                            continue           
-                            
-                elif op == '2':
-                    os.system('cls' if os.name == 'nt' else 'clear')
-                    titulo_automarket()
-                    titulo_editar()
-                    placa = input('PLACA: ')
-                    break
-                elif op == '3':
-                    return  
-                else:
-                    os.system('cls' if os.name == 'nt' else 'clear')
-                    titulo_automarket()
-                    titulo_editar()
-                    print('ERRO: Opção inválida!')
-                    time.sleep(1)
-        else:
-            
-            while True:
-                os.system('cls' if os.name == 'nt' else 'clear')
-                titulo_automarket()
-                titulo_editar()
-                print('ERRO: Veículo não encontrado!')
-                n = input('EDITAR NOVO VEÍCULO [1]\nVOLTAR AO MENU [2]\n>> ')
-                if n == '1':
-                    os.system('cls' if os.name == 'nt' else 'clear')
-                    titulo_automarket()
-                    titulo_editar()
-                    placa = input('PLACA: ')
-                    break  
-                elif n == '2':
-                    return 
-                else:
-                    os.system('cls' if os.name == 'nt' else 'clear')
-                    titulo_automarket()
-                    titulo_editar()
-                    print('ERRO: Opção inválida!')
-                    time.sleep(1)
+    # Função para atualizar o veículo na lista e no índice
+    def atualizar_veiculo(veiculo_atualizado):
+        index = portfolio.index(veiculo)
+        portfolio[index] = veiculo_atualizado
+        salva_banco(portfolio)
+        ctk.CTkLabel(root, text="EDIÇÃO REALIZADA COM SUCESSO!", font=("Helvetica", 14, "bold"), fg_color="green").pack(pady=10)
+        root.after(2000, root.destroy)  # Fecha a janela após 2 segundos
+
+    # Função para atualizar os campos com o veículo
+    def atualizar_campos():
+        veiculo_atualizado = veiculo.copy()
+        # Atualiza os valores dos campos com os valores do veículo
+        veiculo_atualizado.placa = placa_entry.get()
+        veiculo_atualizado.tipo = tipo_var.get()
+        veiculo_atualizado.marca = marca_entry.get()
+        veiculo_atualizado.modelo = modelo_entry.get()
+        veiculo_atualizado.cor = cor_entry.get()
+        veiculo_atualizado.ano_fabricacao = ano_entry.get()
+        veiculo_atualizado.portas = portas_entry.get()
+        veiculo_atualizado.combustivel = combustivel_var.get()
+        veiculo_atualizado.conservacao = conservacao_var.get()
+        veiculo_atualizado.quilometragem = quilometragem_entry.get()
+        veiculo_atualizado.preco = preco_entry.get()
+        veiculo_atualizado.status = status_var.get()
+        atualizar_veiculo(veiculo_atualizado)
+
+    # Função para carregar o veículo
+    veiculo = funcao_busca(portfolio, placa)
+    if not veiculo:
+        ctk.CTkLabel(root, text="Veículo não encontrado!", font=("Helvetica", 14, "bold"), fg_color="red").pack(pady=10)
+        root.after(2000, root.destroy)  # Fecha a janela após 2 segundos
+        return
+
+    # Frame principal
+    frame = ctk.CTkFrame(root)
+    frame.pack(pady=20, padx=20, fill="both", expand=True)
+
+    # Exibindo o título
+    titulo_automarket(frame)
+    titulo_editar(frame)
+
+    # Dados do veículo
+    placa_entry = ctk.CTkEntry(frame, width=200)
+    placa_entry.insert(0, veiculo.placa)
+
+    tipo_var = ctk.StringVar(value=veiculo.tipo)
+    tipo_menu = ctk.CTkOptionMenu(frame, variable=tipo_var, values=[
+        'Camioneta', 'Caminhonete', 'Caminhão', 'Carro', 'Carreta', 'Motocicleta', 'Outro'])
+
+    marca_entry = ctk.CTkEntry(frame, width=200)
+    marca_entry.insert(0, veiculo.marca)
+
+    modelo_entry = ctk.CTkEntry(frame, width=200)
+    modelo_entry.insert(0, veiculo.modelo)
+
+    cor_entry = ctk.CTkEntry(frame, width=200)
+    cor_entry.insert(0, veiculo.cor)
+
+    ano_entry = ctk.CTkEntry(frame, width=200)
+    ano_entry.insert(0, veiculo.ano_fabricacao)
+
+    portas_entry = ctk.CTkEntry(frame, width=200)
+    portas_entry.insert(0, veiculo.portas)
+
+    combustivel_var = ctk.StringVar(value=veiculo.combustivel)
+    combustivel_menu = ctk.CTkOptionMenu(frame, variable=combustivel_var, values=[
+        'Gasolina', 'GLP', 'Etanol', 'GNV', 'Elétrico', 'Híbrido', 'Outro'])
+
+    conservacao_var = ctk.StringVar(value=veiculo.conservacao)
+    conservacao_menu = ctk.CTkOptionMenu(frame, variable=conservacao_var, values=[
+        'Novo', 'Seminovo'])
+
+    quilometragem_entry = ctk.CTkEntry(frame, width=200)
+    quilometragem_entry.insert(0, veiculo.quilometragem)
+
+    preco_entry = ctk.CTkEntry(frame, width=200)
+    preco_entry.insert(0, veiculo.preco)
+
+    status_var = ctk.StringVar(value=veiculo.status)
+    status_menu = ctk.CTkOptionMenu(frame, variable=status_var, values=[
+        'À venda', 'Reservado', 'Vendido', 'Indisponível'])
+
+    # Adicionando os widgets ao frame
+    ctk.CTkLabel(frame, text="Placa:").pack(pady=5)
+    placa_entry.pack(pady=5)
+    
+    ctk.CTkLabel(frame, text="Tipo:").pack(pady=5)
+    tipo_menu.pack(pady=5)
+
+    ctk.CTkLabel(frame, text="Marca:").pack(pady=5)
+    marca_entry.pack(pady=5)
+
+    ctk.CTkLabel(frame, text="Modelo:").pack(pady=5)
+    modelo_entry.pack(pady=5)
+
+    ctk.CTkLabel(frame, text="Cor:").pack(pady=5)
+    cor_entry.pack(pady=5)
+
+    ctk.CTkLabel(frame, text="Ano de Fabricação:").pack(pady=5)
+    ano_entry.pack(pady=5)
+
+    ctk.CTkLabel(frame, text="Portas:").pack(pady=5)
+    portas_entry.pack(pady=5)
+
+    ctk.CTkLabel(frame, text="Combustível:").pack(pady=5)
+    combustivel_menu.pack(pady=5)
+
+    ctk.CTkLabel(frame, text="Conservação:").pack(pady=5)
+    conservacao_menu.pack(pady=5)
+
+    ctk.CTkLabel(frame, text="Quilometragem (KM):").pack(pady=5)
+    quilometragem_entry.pack(pady=5)
+
+    ctk.CTkLabel(frame, text="Preço (R$):").pack(pady=5)
+    preco_entry.pack(pady=5)
+
+    ctk.CTkLabel(frame, text="Status:").pack(pady=5)
+    status_menu.pack(pady=5)
+
+    # Botão para salvar as edições
+    save_button = ctk.CTkButton(frame, text="Salvar Edição", command=atualizar_campos)
+    save_button.pack(pady=10)
+
+    # Botão para voltar ao menu principal
+    back_button = ctk.CTkButton(frame, text="Voltar ao Menu", command=root.destroy)
+    back_button.pack(pady=10)
+
+    root.mainloop()

@@ -1,187 +1,128 @@
-# placa, tipo, marca, modelo, cor, ano_fabricacao, portas, combustivel, conservacao, quilometragem, preco, status
-import time
+import customtkinter as ctk
 from classe_veiculo import Veiculo
 from funcao_exibir import funcao_exibir
 from crud_listar import listar
-from cabecalhos import titulo_automarket, titulo_buscar, titulo_deletar, titulo_editar, titulo_registrar
-import os
-    
+from cabecalhos import titulo_registrar
+from persistencia import salva_banco, cria_banco
+import tkinter
+
+portfolio = cria_banco()
+
+# Configuração inicial do CustomTkinter
+ctk.set_appearance_mode("light")  # Tema claro
+ctk.set_default_color_theme("green")  # Tema verde
+
 def cadastrar(portfolio):
-    n = '0'
-    while n == '0':
-        tipo = '8'
-        combustivel = '8'
-        conservacao = '3'
-        status = '5'
-        os.system('cls' if os.name == 'nt' else 'clear')
-        titulo_automarket()
-        titulo_registrar()    
-        placa = input('PLACA: ').strip()
-        while tipo == '8':
-            os.system('cls' if os.name == 'nt' else 'clear')
-            titulo_automarket()
-            titulo_registrar()
-            tipo = input('''
-TIPO:
-1. Camioneta
-2. Caminhonete
-3. Caminhão
-4. Carro
-5. Carreta
-6. Motocicleta
-7. Outro
-----------------
-OP: ''')
-            match tipo:
-                case '1':
-                    tipo = 'Camioneta'
-                case '2':
-                    tipo = 'Caminhonete'
-                case '3':
-                    tipo = 'Caminhão'
-                case '4':
-                    tipo = 'Carro'
-                case '5':
-                    tipo = 'Carreta'
-                case '6':
-                    tipo = 'Motocicleta'
-                case '7':
-                    tipo = 'Outro'
-                case _:
-                    os.system('cls' if os.name == 'nt' else 'clear')
-                    titulo_automarket()
-                    titulo_registrar()
-                    print('ERRO: Opção inválida!')
-                    tipo = '8'
-                    time.sleep(1)
-                    
-        os.system('cls' if os.name == 'nt' else 'clear')
-        titulo_automarket()
-        titulo_registrar()   
-        marca = input('MARCA: ')
-        os.system('cls' if os.name == 'nt' else 'clear')
-        titulo_automarket()
-        titulo_registrar()
-        modelo = input('MODELO: ')
-        os.system('cls' if os.name == 'nt' else 'clear')
-        titulo_automarket()
-        titulo_registrar()
-        cor = input('COR: ')
-        os.system('cls' if os.name == 'nt' else 'clear')
-        titulo_automarket()
-        titulo_registrar()
-        ano_fabricacao = input('ANO: ')
-        os.system('cls' if os.name == 'nt' else 'clear')
-        titulo_automarket()
-        titulo_registrar()
-        portas = int(input('PORTAS: '))
-        while combustivel == '8':
-            os.system('cls' if os.name == 'nt' else 'clear')
-            titulo_automarket()
-            titulo_registrar()
-            combustivel = input('''
-    TIPO:
-    1. Gasolina
-    2. GLP
-    3. Etanol
-    4. GNV
-    5. Eletrico
-    6. Hibrido
-    7. Outro
-    ----------------
-    OP: ''')
-            match combustivel:
-                case '1':
-                    combustivel = 'Gasolina'
-                case '2':
-                    combustivel = 'GLP'
-                case '3':
-                    combustivel = 'Etanol'
-                case '4':
-                    combustivel = 'GNV'
-                case '5':
-                    combustivel = 'Eletrico'
-                case '6':
-                    combustivel = 'Hibrido'
-                case '7':
-                    combustivel = 'Outro'
-                case _:
-                    os.system('cls' if os.name == 'nt' else 'clear')
-                    titulo_automarket()
-                    titulo_registrar()
-                    print('ERRO: Opcao incorreta! Tente novamente!')
-                    combustivel = '8'
-                    time.sleep(1) 
-        while conservacao == '3':
-            os.system('cls' if os.name == 'nt' else 'clear')
-            titulo_automarket()
-            titulo_registrar()
-            conservacao = input('ESTADO DE CONSERVACAO:\n1. Novo\n2. Seminovo\n----------------\nOP: ')
-            match conservacao:
-                case '1':
-                    conservacao = 'Novo'
-                case '2':
-                    conservacao = 'Seminovo'
-                case _:
-                    os.system('cls' if os.name == 'nt' else 'clear')
-                    titulo_automarket()
-                    titulo_registrar()
-                    print('ERRO: Opcao incorreta! Tente novamente!')
-                    conservacao = '3'
-                    time.sleep(1)
-        os.system('cls' if os.name == 'nt' else 'clear')
-        titulo_automarket()
-        titulo_registrar()     
-        quilometragem = float(input('QUILOMETRAGEM (KM): '))
-        os.system('cls' if os.name == 'nt' else 'clear')
-        titulo_automarket()
-        titulo_registrar()
-        preco = float(input('PREÇO (R$): '))
-        while status == '5':
-            os.system('cls' if os.name == 'nt' else 'clear')
-            titulo_automarket()
-            titulo_registrar()
-            status = input('STATUS:\n1. A venda\n2. Reservado\n3. Vendido\n4. Indisponivel\n----------------\nOP: ')
-            match status:
-                case '1':
-                    status = 'A venda'
-                case '2':
-                    status = 'Reservado'
-                case '3':
-                    status = 'Vendido'
-                case '4':
-                    status = 'Indisponivel'
-                case _:
-                    os.system('cls' if os.name == 'nt' else 'clear')
-                    titulo_automarket()
-                    titulo_registrar()
-                    print('ERRO: Opcao incorreta! Tente novamente!')
-                    status = '5'
-                    time.sleep(1)              
-        novo_veiculo = Veiculo(placa, tipo, marca, modelo, cor, ano_fabricacao, portas, combustivel, conservacao, quilometragem, preco, status)
-        portfolio.append(novo_veiculo)
-        
-        
-        n = '3'
-        while n == '3':
-            os.system('cls' if os.name == 'nt' else 'clear')
-            titulo_automarket()
-            titulo_registrar()
-            print('REGISTRO REALIZADO COM SUCESSO!')
-            funcao_exibir(novo_veiculo)
-            n = input('NOVO REGISTRO [1]\nLISTAR VEÍCULOS [2]\nVOLTAR AO MENU [3]\n>>> ')
-            if n == '1':
-                n = '0'
-            elif n == '2':
-                listar(portfolio)
-                return
-            elif n == '3':
-                return
-            else:
-                os.system('cls' if os.name == 'nt' else 'clear')
-                titulo_automarket()
-                titulo_registrar()
-                print('ERRO: opção inválida!')
-                n = '3'
-                time.sleep(1)
+    # Criando a janela principal para o cadastro
+    root = ctk.CTk()
+    root.title("Registrar Veículo")
+    root.geometry("600x600")
     
+    # Frame para o cabeçalho e conteúdo
+    frame = ctk.CTkFrame(root)
+    frame.pack(pady=20, padx=20, fill="both", expand=True)
+    
+    # Exibindo o título
+    titulo_registrar(frame)
+    
+    # Variáveis de entrada
+    placa_var = ctk.StringVar()
+    tipo_var = ctk.StringVar(value="Selecionar Tipo")
+    marca_var = ctk.StringVar()
+    modelo_var = ctk.StringVar()
+    cor_var = ctk.StringVar()
+    ano_var = ctk.StringVar()
+    portas_var = ctk.StringVar()
+    combustivel_var = ctk.StringVar(value="Selecionar Combustível")
+    conservacao_var = ctk.StringVar(value="Selecionar Conservação")
+    quilometragem_var = ctk.StringVar()
+    preco_var = ctk.StringVar()
+    status_var = ctk.StringVar(value="Selecionar Status")
+    
+    # Campos de entrada de dados
+    entries = [
+        ("Placa:", placa_var),
+        ("Marca:", marca_var),
+        ("Modelo:", modelo_var),
+        ("Cor:", cor_var),
+        ("Ano de Fabricação:", ano_var),
+        ("Portas:", portas_var),
+        ("Quilometragem (km):", quilometragem_var),
+        ("Preço (R$):", preco_var)
+    ]
+    
+    # Criando rótulos e entradas
+    for idx, (label_text, var) in enumerate(entries):
+        ctk.CTkLabel(frame, text=label_text, font=("Helvetica", 12)).grid(row=idx, column=0, pady=5, padx=10, sticky="e")
+        ctk.CTkEntry(frame, textvariable=var).grid(row=idx, column=1, pady=5, padx=10, sticky="w")
+    
+    # Menus de opções
+    tipos = ["Camioneta", "Caminhonete", "Caminhão", "Carro", "Carreta", "Motocicleta", "Outro"]
+    combustiveis = ["Gasolina", "GLP", "Etanol", "GNV", "Elétrico", "Híbrido", "Outro"]
+    conservacoes = ["Novo", "Seminovo"]
+    status_opcoes = ["À venda", "Reservado", "Vendido", "Indisponível"]
+
+    ctk.CTkLabel(frame, text="Tipo:", font=("Helvetica", 12)).grid(row=len(entries), column=0, pady=5, padx=10, sticky="e")
+    ctk.CTkOptionMenu(frame, values=tipos, variable=tipo_var).grid(row=len(entries), column=1, pady=5, padx=10, sticky="w")
+
+    ctk.CTkLabel(frame, text="Combustível:", font=("Helvetica", 12)).grid(row=len(entries) + 1, column=0, pady=5, padx=10, sticky="e")
+    ctk.CTkOptionMenu(frame, values=combustiveis, variable=combustivel_var).grid(row=len(entries) + 1, column=1, pady=5, padx=10, sticky="w")
+
+    ctk.CTkLabel(frame, text="Conservação:", font=("Helvetica", 12)).grid(row=len(entries) + 2, column=0, pady=5, padx=10, sticky="e")
+    ctk.CTkOptionMenu(frame, values=conservacoes, variable=conservacao_var).grid(row=len(entries) + 2, column=1, pady=5, padx=10, sticky="w")
+
+    ctk.CTkLabel(frame, text="Status:", font=("Helvetica", 12)).grid(row=len(entries) + 3, column=0, pady=5, padx=10, sticky="e")
+    ctk.CTkOptionMenu(frame, values=status_opcoes, variable=status_var).grid(row=len(entries) + 3, column=1, pady=5, padx=10, sticky="w")
+    
+    # Função de salvar o veículo
+    def salvar_veiculo():
+        novo_veiculo = Veiculo(
+            placa_var.get(),
+            tipo_var.get(),
+            marca_var.get(),
+            modelo_var.get(),
+            cor_var.get(),
+            ano_var.get(),
+            int(portas_var.get()),
+            combustivel_var.get(),
+            conservacao_var.get(),
+            float(quilometragem_var.get()),
+            float(preco_var.get()),
+            status_var.get()
+        )
+        portfolio.append(novo_veiculo)
+        funcao_exibir(novo_veiculo)
+        salva_banco(portfolio)
+        mostrar_opcoes_apos_registro(novo_veiculo)
+
+    # Botão para salvar
+    ctk.CTkButton(frame, text="Registrar Veículo", command=salvar_veiculo).grid(row=len(entries) + 4, column=0, columnspan=2, pady=20)
+    
+    # Função para exibir opções após o registro
+    def mostrar_opcoes_apos_registro(novo_veiculo):
+        # Criando uma nova janela para as opções
+        opcoes_window = ctk.CTkToplevel(root)
+        opcoes_window.title("Registro Realizado")
+        opcoes_window.geometry("400x300")
+        
+        # Exibição de mensagem de sucesso
+        ctk.CTkLabel(opcoes_window, text="REGISTRO REALIZADO COM SUCESSO!", font=("Helvetica", 14, "bold")).pack(pady=20)
+        
+        # Botões de opção
+        def novo_registro():
+            opcoes_window.destroy()
+            cadastrar(portfolio)
+
+        def listar_veiculos():
+            opcoes_window.destroy()
+            listar(portfolio)
+        
+        def voltar_menu():
+            opcoes_window.destroy()
+            root.destroy()
+        
+        ctk.CTkButton(opcoes_window, text="Novo Registro", command=novo_registro).pack(pady=5)
+        ctk.CTkButton(opcoes_window, text="Listar Veículos", command=listar_veiculos).pack(pady=5)
+        ctk.CTkButton(opcoes_window, text="Voltar ao Menu", command=voltar_menu).pack(pady=5)
+    
+    root.mainloop()
