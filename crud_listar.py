@@ -1,4 +1,5 @@
 from crud_editar import editar
+from funcao_placa import funcao_placa
 from crud_deletar import deletar
 from cabecalhos import titulo_automarket, titulo_buscar, titulo_deletar, titulo_editar, titulo_registrar, titulo_listar
 import time
@@ -32,14 +33,14 @@ def listar(portfolio):
             os.system('cls' if os.name == 'nt' else 'clear')
             titulo_automarket()
             titulo_listar()
-            placa = input('PLACA: ')
+            placa = funcao_placa(portfolio, placa)
             editar(portfolio, placa)
             return
         elif n == '2':
             os.system('cls' if os.name == 'nt' else 'clear')
             titulo_automarket()
             titulo_listar()
-            placa = input('PLACA: ')
+            placa = funcao_placa(portfolio, placa)
             deletar(portfolio, placa)
             return
                 

@@ -1,4 +1,3 @@
-# placa, tipo, marca, modelo, cor, ano_fabricacao, portas, combustivel, conservacao, quilometragem, preco, status
 import time
 from classe_veiculo import Veiculo
 from funcao_exibir import funcao_exibir

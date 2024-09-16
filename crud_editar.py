@@ -1,4 +1,5 @@
 from funcao_busca import funcao_busca
+from funcao_placa import funcao_placa
 from classe_veiculo import Veiculo
 from funcao_exibir import funcao_exibir
 from cabecalhos import titulo_automarket, titulo_buscar, titulo_deletar, titulo_editar, titulo_registrar
@@ -6,6 +7,7 @@ import time
 import os
 
 def editar(portfolio, placa):
+    placa = funcao_placa(portfolio, placa)
     while True:
         veiculo = funcao_busca(portfolio, placa)
 

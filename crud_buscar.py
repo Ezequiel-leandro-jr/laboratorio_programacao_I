@@ -1,5 +1,6 @@
 from funcao_busca import funcao_busca
 from funcao_exibir import funcao_exibir
+from funcao_placa import funcao_placa
 from crud_editar import editar
 from crud_deletar import deletar
 from cabecalhos import titulo_automarket, titulo_buscar, titulo_deletar, titulo_editar, titulo_registrar
@@ -7,6 +8,7 @@ import time
 import os
 
 def buscar(portfolio, placa):
+    placa = funcao_placa(portfolio, placa)
     while True:
         os.system('cls' if os.name == 'nt' else 'clear')
         titulo_automarket()
@@ -29,7 +31,7 @@ def buscar(portfolio, placa):
                     os.system('cls' if os.name == 'nt' else 'clear')
                     titulo_automarket()
                     titulo_buscar()
-                    placa = input('PLACA: ')
+                    placa = funcao_placa(portfolio, placa)
                     continue
                 case '4':
                     return
@@ -47,7 +49,7 @@ def buscar(portfolio, placa):
                     os.system('cls' if os.name == 'nt' else 'clear')
                     titulo_automarket()
                     titulo_buscar()
-                    placa = input('PLACA: ')
+                    placa = funcao_placa(portfolio, placa)
                     break  
                 elif n == '2':
                     return 
