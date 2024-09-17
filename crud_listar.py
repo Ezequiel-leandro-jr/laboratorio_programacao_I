@@ -16,6 +16,12 @@ def listar(portfolio):
 
         # Atualizar a lista de veículos
         for i, veiculo in enumerate(portfolio, start=1):
+            # Tenta converter quilometragem para float
+            try:
+                quilometragem = float(veiculo.quilometragem)
+            except ValueError:
+                quilometragem = 0.0  # Define valor padrão se a conversão falhar
+
             # Criar um frame para cada veículo, estilizado com bordas
             veiculo_frame = ctk.CTkFrame(frame_list, fg_color="#EDEDED", corner_radius=10)
             veiculo_frame.pack(pady=10, fill="x", padx=10)
@@ -29,14 +35,18 @@ def listar(portfolio):
             ctk.CTkLabel(veiculo_frame, text=f"ANO: {veiculo.ano_fabricacao}  |  COR: {veiculo.cor}  |  PORTAS: {veiculo.portas}  |  COMBUSTÍVEL: {veiculo.combustivel}", 
                          font=("Helvetica", 12), text_color="#333333").pack(pady=2)
 
-            ctk.CTkLabel(veiculo_frame, text=f"ESTADO: {veiculo.conservacao}  |  KM: {veiculo.quilometragem:.2f} Km  |  PREÇO: R${veiculo.preco:.2f}", 
+            ctk.CTkLabel(veiculo_frame, text=f"ESTADO: {veiculo.conservacao}  |  KM: {quilometragem:.2f} Km  |  PREÇO: R${veiculo.preco}", 
                          font=("Helvetica", 12), text_color="#333333").pack(pady=2)
 
             ctk.CTkLabel(veiculo_frame, text=f"STATUS: {veiculo.status}", 
                          font=("Helvetica", 12, "italic"), text_color="#1C1C1C").pack(pady=2)
 
-        # Atualizar o lbl_total apenas se ele ainda existir
-        if lbl_total and lbl_total.winfo_exists():
+        # Atualizar o lbl_total apenas se a janela ainda existir
+        if window and window.winfo_exists():
+            global lbl_total
+            if lbl_total is None or not lbl_total.winfo_exists():
+                lbl_total = ctk.CTkLabel(frame_list, text="")
+                lbl_total.pack(pady=10)
             lbl_total.configure(text=f'TOTAL DE VEÍCULOS: {len(portfolio)}')
 
     def on_edit():
@@ -54,6 +64,7 @@ def listar(portfolio):
     def on_back():
         window.destroy()
 
+    global window
     window = ctk.CTk()
     window.title("Listar Veículos")
     window.geometry("800x600")
@@ -66,9 +77,8 @@ def listar(portfolio):
 
     # Usar a palavra-chave global para lbl_total
     global lbl_total
-    if lbl_total is None or not lbl_total.winfo_exists():
-        lbl_total = ctk.CTkLabel(frame_list, text="")
-        lbl_total.pack(pady=10)
+    lbl_total = ctk.CTkLabel(frame_list, text="")
+    lbl_total.pack(pady=10)
 
     update_list()
 
