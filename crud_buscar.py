@@ -1,20 +1,16 @@
 import customtkinter as ctk
 from funcao_busca import funcao_busca
 from funcao_placa import funcao_placa
-from crud_editar import editar
-from crud_deletar import deletar
 
 def buscar(portfolio, placa):
     def on_edit():
         nonlocal placa
         new_placa = funcao_placa(portfolio, placa)
         if new_placa:
-            editar(portfolio, new_placa)
             window.destroy()
 
     def on_delete():
         nonlocal placa
-        deletar(portfolio, placa)
         window.destroy()
 
     def on_new_search():
