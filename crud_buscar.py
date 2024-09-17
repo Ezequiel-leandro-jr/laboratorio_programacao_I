@@ -1,10 +1,8 @@
 import customtkinter as ctk
 from funcao_busca import funcao_busca
-from funcao_exibir import funcao_exibir
 from funcao_placa import funcao_placa
 from crud_editar import editar
 from crud_deletar import deletar
-from cabecalhos import titulo_automarket, titulo_buscar
 
 def buscar(portfolio, placa):
     def on_edit():
@@ -31,48 +29,50 @@ def buscar(portfolio, placa):
         nonlocal placa
         veiculo = funcao_busca(portfolio, placa)
         if veiculo:
-            lbl_vehicle_info.configure(text=f'''
-            PLACA: {veiculo.placa}
-            TIPO: {veiculo.tipo}
-            MARCA: {veiculo.marca}
-            MODELO: {veiculo.modelo}
-            ANO: {veiculo.ano_fabricacao}
-            COR: {veiculo.cor}
-            PORTAS: {veiculo.portas}
-            COMBUSTÍVEL: {veiculo.combustivel}
-            ESTADO: {veiculo.conservacao}
-            QUILOMETRAGEM: {veiculo.quilometragem:.2f}Km
-            PREÇO: R${veiculo.preco:.2f}
-            STATUS: {veiculo.status}
-            ''')
-            lbl_vehicle_info.pack(pady=10)
-            btn_edit.pack(pady=5)
-            btn_delete.pack(pady=5)
+            vehicle_info_text = (
+                f"PLACA: {veiculo.placa}\n"
+                f"TIPO: {veiculo.tipo}\n"
+                f"MARCA: {veiculo.marca}\n"
+                f"MODELO: {veiculo.modelo}\n"
+                f"ANO: {veiculo.ano_fabricacao}\n"
+                f"COR: {veiculo.cor}\n"
+                f"PORTAS: {veiculo.portas}\n"
+                f"COMBUSTÍVEL: {veiculo.combustivel}\n"
+                f"ESTADO: {veiculo.conservacao}\n"
+                f"QUILOMETRAGEM: {veiculo.quilometragem:.2f} Km\n"
+                f"PREÇO: R${veiculo.preco:.2f}\n"
+                f"STATUS: {veiculo.status}\n"
+            )
+            lbl_vehicle_info.configure(text=vehicle_info_text)
+            lbl_vehicle_info.pack(pady=10, fill="both", expand=True)
+            btn_edit.pack(pady=5, fill="x")
+            btn_delete.pack(pady=5, fill="x")
         else:
             lbl_vehicle_info.configure(text="ERRO: Veículo não encontrado!")
-            lbl_vehicle_info.pack(pady=10)
-            btn_new_search.pack(pady=5)
-            btn_close.pack(pady=5)
+            lbl_vehicle_info.pack(pady=10, fill="both", expand=True)
+            btn_new_search.pack(pady=5, fill="x")
+            btn_close.pack(pady=5, fill="x")
     
     # Criar janela principal
     window = ctk.CTk()
     window.title("Buscar Veículo")
     window.geometry("600x400")
+    window.configure(bg_color="#f0f0f0")
 
     # Adicionar cabeçalhos
-    frame = ctk.CTkFrame(window)
+    frame = ctk.CTkFrame(window, bg_color="#ffffff", border_width=2, corner_radius=10)
     frame.pack(fill="both", expand=True, padx=20, pady=20)
 
-    lbl_title = ctk.CTkLabel(frame, text="Buscar Veículo", font=("Helvetica", 16))
+    lbl_title = ctk.CTkLabel(frame, text="Buscar Veículo", font=("Helvetica", 18, "bold"), bg_color="#ffffff", text_color="#333333")
     lbl_title.pack(pady=10)
-    
-    lbl_vehicle_info = ctk.CTkLabel(frame, text="", anchor="w", justify="left", font=("Helvetica", 12))
 
+    lbl_vehicle_info = ctk.CTkLabel(frame, text="", anchor="w", justify="left", font=("Helvetica", 12), bg_color="#ffffff", text_color="#333333")
+    
     # Botões
-    btn_edit = ctk.CTkButton(frame, text="EDITAR", command=on_edit)
-    btn_delete = ctk.CTkButton(frame, text="DELETAR", command=on_delete)
-    btn_new_search = ctk.CTkButton(frame, text="NOVA BUSCA", command=on_new_search)
-    btn_close = ctk.CTkButton(frame, text="FECHAR", command=on_close)
+    btn_edit = ctk.CTkButton(frame, text="EDITAR", command=on_edit, fg_color="green", hover_color="darkgreen")
+    btn_delete = ctk.CTkButton(frame, text="DELETAR", command=on_delete, fg_color="red", hover_color="darkred")
+    btn_new_search = ctk.CTkButton(frame, text="NOVA BUSCA", command=on_new_search, fg_color="orange", hover_color="darkorange")
+    btn_close = ctk.CTkButton(frame, text="FECHAR", command=on_close, fg_color="gray", hover_color="darkgray")
 
     # Atualizar informações do veículo
     update_vehicle_info()
