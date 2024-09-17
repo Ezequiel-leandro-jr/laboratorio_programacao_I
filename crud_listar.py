@@ -5,23 +5,39 @@ from crud_deletar import deletar
 from cabecalhos import titulo_listar
 from tkinter import messagebox
 
+# Inicializar lbl_total como None
+lbl_total = None
+
 def listar(portfolio):
     def update_list():
+        # Limpar widgets existentes no frame_list
         for widget in frame_list.winfo_children():
             widget.destroy()
 
+        # Atualizar a lista de veículos
         for i, veiculo in enumerate(portfolio, start=1):
-            ctk.CTkLabel(frame_list, text=f'''
-    VEÍCULO {i}:
-    ----------------------------------------------------------------------------------------------------------------------
-    PLACA: {veiculo.placa} | TIPO: {veiculo.tipo} | MARCA: {veiculo.marca} | MODELO: {veiculo.modelo}
-    ANO: {veiculo.ano_fabricacao} | COR: {veiculo.cor} | PORTAS: {veiculo.portas} | COMBUSTÍVEL: {veiculo.combustivel}
-    ESTADO: {veiculo.conservacao} | QUILOMETRAGEM: {veiculo.quilometragem:.2f}Km | PREÇO: R${veiculo.preco:.2f}
-    STATUS: {veiculo.status}
-    ----------------------------------------------------------------------------------------------------------------------
-    ''', text_color="black", font=("Helvetica", 12)).pack(pady=10)
+            # Criar um frame para cada veículo, estilizado com bordas
+            veiculo_frame = ctk.CTkFrame(frame_list, fg_color="#EDEDED", corner_radius=10)
+            veiculo_frame.pack(pady=10, fill="x", padx=10)
 
-        lbl_total.config(text=f'TOTAL DE VEÍCULOS: {len(portfolio)}')
+            # Adicionar a descrição do veículo de forma estilizada
+            ctk.CTkLabel(veiculo_frame, text=f"VEÍCULO {i}", font=("Helvetica", 14, "bold"), text_color="#1C1C1C").pack(pady=5)
+
+            ctk.CTkLabel(veiculo_frame, text=f"PLACA: {veiculo.placa}  |  TIPO: {veiculo.tipo}  |  MARCA: {veiculo.marca}  |  MODELO: {veiculo.modelo}", 
+                         font=("Helvetica", 12), text_color="#333333").pack(pady=2)
+
+            ctk.CTkLabel(veiculo_frame, text=f"ANO: {veiculo.ano_fabricacao}  |  COR: {veiculo.cor}  |  PORTAS: {veiculo.portas}  |  COMBUSTÍVEL: {veiculo.combustivel}", 
+                         font=("Helvetica", 12), text_color="#333333").pack(pady=2)
+
+            ctk.CTkLabel(veiculo_frame, text=f"ESTADO: {veiculo.conservacao}  |  KM: {veiculo.quilometragem:.2f} Km  |  PREÇO: R${veiculo.preco:.2f}", 
+                         font=("Helvetica", 12), text_color="#333333").pack(pady=2)
+
+            ctk.CTkLabel(veiculo_frame, text=f"STATUS: {veiculo.status}", 
+                         font=("Helvetica", 12, "italic"), text_color="#1C1C1C").pack(pady=2)
+
+        # Atualizar o lbl_total apenas se ele ainda existir
+        if lbl_total and lbl_total.winfo_exists():
+            lbl_total.configure(text=f'TOTAL DE VEÍCULOS: {len(portfolio)}')
 
     def on_edit():
         placa = funcao_placa(portfolio)
@@ -45,11 +61,14 @@ def listar(portfolio):
     frame_list = ctk.CTkFrame(window)
     frame_list.pack(fill="both", expand=True, padx=20, pady=20)
 
-    lbl_title = ctk.CTkLabel(frame_list, text="Lista de Veículos", font=("Helvetica", 16))
+    lbl_title = ctk.CTkLabel(frame_list, text="Lista de Veículos", font=("Helvetica", 16, "bold"))
     lbl_title.pack(pady=10)
 
-    lbl_total = ctk.CTkLabel(frame_list, text="")
-    lbl_total.pack(pady=10)
+    # Usar a palavra-chave global para lbl_total
+    global lbl_total
+    if lbl_total is None or not lbl_total.winfo_exists():
+        lbl_total = ctk.CTkLabel(frame_list, text="")
+        lbl_total.pack(pady=10)
 
     update_list()
 
