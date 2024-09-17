@@ -7,8 +7,6 @@ from crud_registrar import cadastrar
 from persistencia import salva_banco, cria_banco
 from classe_veiculo import Veiculo
 from funcao_exibir import funcao_exibir
-from crud_listar import listar
-from crud_registrar import cadastrar
 from cabecalhos import titulo_automarket, titulo_registrar
 
 class MainApp(ctk.CTk):
@@ -54,20 +52,50 @@ class MainApp(ctk.CTk):
         cadastrar(self.portfolio)
 
     def buscar_veiculo(self):
-        buscar(self.portfolio)
+        placa = self._obter_placa()
+        if placa:
+            buscar(self.portfolio, placa)
 
     def editar_veiculo(self):
-        editar(self.portfolio)
+        placa = self._obter_placa()
+        if placa:
+            editar(self.portfolio, placa)
 
     def listar_veiculos(self):
         listar(self.portfolio)
 
     def deletar_veiculo(self):
-        deletar(self.portfolio)
+        placa = self._obter_placa()
+        if placa:
+            deletar(self.portfolio, placa)
 
     def sair(self):
         salva_banco(self.portfolio)  # Salvar o banco de dados antes de sair
         self.quit()
+
+    def _obter_placa(self):
+        # Criar uma nova janela para entrada de dados
+        placa_window = ctk.CTkToplevel(self)
+        placa_window.title("Obter Placa")
+        placa_window.geometry("300x150")
+        placa_window.configure(bg_color="white")
+
+        lbl_prompt = ctk.CTkLabel(placa_window, text="Digite a placa do veículo:", font=("Helvetica", 12), bg_color="white")
+        lbl_prompt.pack(pady=10)
+
+        placa_entry = ctk.CTkEntry(placa_window, placeholder_text="Placa")
+        placa_entry.pack(pady=10)
+
+        def on_ok():
+            self.placa = placa_entry.get()
+            placa_window.destroy()
+
+        btn_ok = ctk.CTkButton(placa_window, text="OK", command=on_ok, fg_color="green", hover_color="darkgreen")
+        btn_ok.pack(pady=10)
+
+        # Esperar até a janela ser destruída
+        self.wait_window(placa_window)
+        return getattr(self, 'placa', None)
 
 # Executar a aplicação
 if __name__ == "__main__":
