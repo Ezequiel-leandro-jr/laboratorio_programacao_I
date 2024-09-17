@@ -26,7 +26,7 @@ class MainApp(ctk.CTk):
         self.frame.pack(expand=True, fill="both")
 
         # Cabeçalho
-        self.header = ctk.CTkLabel(self.frame, text="AutoMarket", font=("Arial", 24), bg_color="white", text_color="green")
+        self.header = ctk.CTkLabel(self.frame, text="AutoMarket", font=("Arial", 24, "bold"), bg_color="white", text_color="green")
         self.header.pack(pady=10)
 
         # Botões do menu
@@ -77,21 +77,26 @@ class MainApp(ctk.CTk):
         # Criar uma nova janela para entrada de dados
         placa_window = ctk.CTkToplevel(self)
         placa_window.title("Obter Placa")
-        placa_window.geometry("300x150")
-        placa_window.configure(bg_color="white")
+        placa_window.geometry("350x200")
+        placa_window.configure(bg_color="#f5f5f5")  # Cor de fundo suave
 
-        lbl_prompt = ctk.CTkLabel(placa_window, text="Digite a placa do veículo:", font=("Helvetica", 12), bg_color="white")
-        lbl_prompt.pack(pady=10)
+        # Fazer a janela modal
+        placa_window.transient(self)
+        placa_window.grab_set()
 
-        placa_entry = ctk.CTkEntry(placa_window, placeholder_text="Placa")
+        # Ajustar a fonte e cores para legibilidade
+        lbl_prompt = ctk.CTkLabel(placa_window, text="Digite a placa do veículo:", font=("Helvetica", 16, "bold"), bg_color="#f5f5f5", text_color="#333333")
+        lbl_prompt.pack(pady=(20, 10))
+
+        placa_entry = ctk.CTkEntry(placa_window, placeholder_text="Placa", font=("Helvetica", 14), width=250, border_width=2, corner_radius=5)
         placa_entry.pack(pady=10)
 
         def on_ok():
             self.placa = placa_entry.get()
             placa_window.destroy()
 
-        btn_ok = ctk.CTkButton(placa_window, text="OK", command=on_ok, fg_color="green", hover_color="darkgreen")
-        btn_ok.pack(pady=10)
+        btn_ok = ctk.CTkButton(placa_window, text="OK", command=on_ok, fg_color="green", hover_color="darkgreen", font=("Helvetica", 14, "bold"))
+        btn_ok.pack(pady=(10, 20))
 
         # Esperar até a janela ser destruída
         self.wait_window(placa_window)
