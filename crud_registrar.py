@@ -158,4 +158,3 @@ def cadastrar(portfolio):
     canvas.config(scrollregion=canvas.bbox("all"))
 
     window.mainloop()
-
