@@ -1,4 +1,5 @@
 import customtkinter as ctk
+from tkinter import RIGHT, LEFT, BOTH, Y
 from classe_veiculo import Veiculo
 from funcao_exibir import funcao_exibir
 from crud_listar import listar
@@ -50,15 +51,25 @@ def cadastrar(portfolio):
     def close_window():
         window.destroy()
 
-    # Criar a janela principal
+    # Criar a janela principal com um tamanho mais ajustado
     window = ctk.CTk()
     window.title("Cadastrar Veículo")
-    window.geometry("600x600")  # Defina o tamanho da janela aqui
+    window.geometry("500x650")
+
+    # Criar canvas e frame para permitir scroll
+    canvas = ctk.CTkCanvas(window)
+    canvas.pack(side=LEFT, fill=BOTH, expand=True)
+
+    scrollbar = ctk.CTkScrollbar(window, orientation="vertical", command=canvas.yview)
+    scrollbar.pack(side=RIGHT, fill=Y)
+
+    canvas.configure(yscrollcommand=scrollbar.set)
+
+    # Frame para conteúdo com o formulário
+    frame = ctk.CTkFrame(canvas)
+    canvas.create_window((0, 0), window=frame, anchor='nw')
 
     # Adicionar cabeçalhos
-    frame = ctk.CTkFrame(window)
-    frame.grid(row=0, column=0, sticky="nsew", padx=20, pady=20)
-    
     lbl_title = ctk.CTkLabel(frame, text="Cadastrar Novo Veículo", font=("Helvetica", 16))
     lbl_title.grid(row=0, column=0, columnspan=2, pady=10)
 
@@ -139,7 +150,12 @@ def cadastrar(portfolio):
     btn_list_vehicles = ctk.CTkButton(frame, text="Listar Veículos", command=list_vehicles)
     btn_list_vehicles.grid(row=16, column=0, columnspan=2, pady=5)
 
-    btn_close = ctk.CTkButton(frame, text="Fechar", command=close_window)
+    btn_close = ctk.CTkButton(frame, text="Voltar ao Menu", command=close_window)
     btn_close.grid(row=17, column=0, columnspan=2, pady=5)
 
+    # Atualizar scrollregion após adicionar widgets
+    frame.update_idletasks()
+    canvas.config(scrollregion=canvas.bbox("all"))
+
     window.mainloop()
+
