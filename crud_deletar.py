@@ -1,4 +1,5 @@
 import customtkinter as ctk
+import tkinter.messagebox as messagebox  # Importando o módulo messagebox do tkinter
 from funcao_busca import funcao_busca
 from funcao_placa import funcao_placa
 from funcao_exibir import funcao_exibir
@@ -13,12 +14,16 @@ def deletar(portfolio, placa):
         if veiculo:
             def confirmacao():
                 nonlocal veiculo
-                if ctk.messagebox.askyesno("Confirmação", "Tem certeza que deseja deletar este veículo?"):
+                # Usar tkinter.messagebox em vez de ctk.messagebox
+                if messagebox.askyesno("Confirmação", "Tem certeza que deseja deletar este veículo?"):
                     portfolio.remove(veiculo)
-                    ctk.messagebox.showinfo("Sucesso", "Veículo deletado com sucesso!")
+                    messagebox.showinfo("Sucesso", "Veículo deletado com sucesso!")
                     app.destroy()
                 else:
                     app.destroy()
+
+            # Criar detalhes do veículo usando a notação de ponto
+            detalhes_veiculo = f"Modelo: {veiculo.modelo}\nPlaca: {veiculo.placa}\nAno: {veiculo.ano_fabricacao}"
 
             app = ctk.CTk()
             app.title("Deletar Veículo")
@@ -36,8 +41,8 @@ def deletar(portfolio, placa):
             
             funcao_exibir_frame = ctk.CTkFrame(app)
             funcao_exibir_frame.pack(padx=20, pady=10)
-            funcao_exibir(veiculo)
-            
+            ctk.CTkLabel(funcao_exibir_frame, text=detalhes_veiculo).pack()
+
             confirmar_button = ctk.CTkButton(app, text="Confirmar Deleção", command=confirmacao)
             confirmar_button.pack(pady=10)
             
@@ -71,3 +76,5 @@ def deletar(portfolio, placa):
                 voltar_menu_button.pack(pady=10)
                 
                 app.mainloop()
+                
+    processar_delecao()
