@@ -70,8 +70,16 @@ class MainApp(ctk.CTk):
             deletar(self.portfolio, placa)
 
     def sair(self):
-        salva_banco(self.portfolio)  # Salvar o banco de dados antes de sair
-        self.quit()
+        # Salvar o banco de dados antes de sair
+        salva_banco(self.portfolio)
+        
+        # Fechar todas as janelas secundárias abertas
+        for widget in self.winfo_children():
+            if isinstance(widget, ctk.CTkToplevel):
+                widget.destroy()
+        
+        # Fechar a janela principal
+        self.destroy()
 
     def _obter_placa(self):
         # Criar uma nova janela para entrada de dados
