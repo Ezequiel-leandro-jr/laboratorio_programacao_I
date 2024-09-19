@@ -82,7 +82,6 @@ class MainApp(ctk.CTk):
 
         # Fazer a janela modal
         placa_window.transient(self)
-        placa_window.grab_set()
 
         # Ajustar a fonte e cores para legibilidade
         lbl_prompt = ctk.CTkLabel(placa_window, text="Digite a placa do veículo:", font=("Helvetica", 16, "bold"), bg_color="#f5f5f5", text_color="#333333")
@@ -97,6 +96,9 @@ class MainApp(ctk.CTk):
 
         btn_ok = ctk.CTkButton(placa_window, text="OK", command=on_ok, fg_color="green", hover_color="darkgreen", font=("Helvetica", 14, "bold"))
         btn_ok.pack(pady=(10, 20))
+
+        # Usa o método after para atrasar a chamada ao grab_set
+        placa_window.after(10, lambda: placa_window.grab_set())
 
         # Esperar até a janela ser destruída
         self.wait_window(placa_window)
