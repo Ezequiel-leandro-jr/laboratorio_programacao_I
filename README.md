@@ -16,7 +16,12 @@ PASSO A PASSO PARA EXECUTAR O SISTEMA
 3) ATIVAR O AMBIENTE VIRTUAL
     .\myenv\Scripts\Activate
 
-4) EXECUTAR O PROGRAMA
+4) INSTALAR AS DEPENDÊNCIAS
+    pip install pandas
+    pip install openpyxl
+    pip install customtkinter
+
+5) EXECUTAR O PROGRAMA
     python app.py
 
 
@@ -31,7 +36,12 @@ PASSO A PASSO PARA EXECUTAR O SISTEMA
 3) ATIVAR O AMBIENTE VIRTUAL
     source myenv/bin/activate
 
-4) EXECUTAR O PROGRAMA:
+4) INSTALAR AS DEPENDÊNCIAS
+    pip install pandas
+    pip install openpyxl
+    pip install customtkinter
+
+5) EXECUTAR O PROGRAMA:
     python app.py
 
 
