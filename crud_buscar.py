@@ -7,12 +7,15 @@ def buscar(portfolio, placa):
         nonlocal placa
         new_placa = funcao_placa(portfolio, placa)
         if new_placa:
-            window.destroy()
-
+            placa = new_placa
+            update_vehicle_info()
+    
     def on_delete():
         nonlocal placa
+        # Função para deletar veículo
+        # Adicione a lógica para deletar o veículo aqui
         window.destroy()
-
+    
     def on_new_search():
         nonlocal placa
         placa = funcao_placa(portfolio, placa)
@@ -24,23 +27,28 @@ def buscar(portfolio, placa):
     def update_vehicle_info():
         nonlocal placa
         veiculo = funcao_busca(portfolio, placa)
+        
+        # Limpar o frame antes de adicionar novos widgets
+        for widget in detalhes_frame.winfo_children():
+            widget.destroy()
+
         if veiculo:
-            vehicle_info_text = (
-                f"PLACA: {veiculo.placa}\n"
-                f"TIPO: {veiculo.tipo}\n"
-                f"MARCA: {veiculo.marca}\n"
-                f"MODELO: {veiculo.modelo}\n"
-                f"ANO: {veiculo.ano_fabricacao}\n"
-                f"COR: {veiculo.cor}\n"
-                f"PORTAS: {veiculo.portas}\n"
-                f"COMBUSTÍVEL: {veiculo.combustivel}\n"
-                f"ESTADO: {veiculo.conservacao}\n"
-                f"QUILOMETRAGEM: {veiculo.quilometragem:.2f} Km\n"
-                f"PREÇO: R${veiculo.preco:.2f}\n"
-                f"STATUS: {veiculo.status}\n"
-            )
-            lbl_vehicle_info.configure(text=vehicle_info_text)
-            lbl_vehicle_info.pack(pady=10, fill="both", expand=True)
+            # Adicionar a descrição do veículo de forma estilizada
+            ctk.CTkLabel(detalhes_frame, text="DETALHES DO VEÍCULO", font=("Helvetica", 16, "bold"), text_color="#1C1C1C").pack(pady=5)
+
+            ctk.CTkLabel(detalhes_frame, text=f"PLACA: {veiculo.placa}  |  TIPO: {veiculo.tipo}  |  MARCA: {veiculo.marca}  |  MODELO: {veiculo.modelo}", 
+                         font=("Helvetica", 12), text_color="#333333").pack(pady=2)
+
+            ctk.CTkLabel(detalhes_frame, text=f"ANO: {veiculo.ano_fabricacao}  |  COR: {veiculo.cor}  |  PORTAS: {veiculo.portas}  |  COMBUSTÍVEL: {veiculo.combustivel}", 
+                         font=("Helvetica", 12), text_color="#333333").pack(pady=2)
+
+            ctk.CTkLabel(detalhes_frame, text=f"ESTADO: {veiculo.conservacao}  |  KM: {veiculo.quilometragem:.2f} Km  |  PREÇO: R${veiculo.preco:.2f}", 
+                         font=("Helvetica", 12), text_color="#333333").pack(pady=2)
+
+            ctk.CTkLabel(detalhes_frame, text=f"STATUS: {veiculo.status}", 
+                         font=("Helvetica", 12, "italic"), text_color="#1C1C1C").pack(pady=2)
+
+            # Mostrar os botões
             btn_edit.pack(pady=5, fill="x")
             btn_delete.pack(pady=5, fill="x")
         else:
@@ -53,17 +61,20 @@ def buscar(portfolio, placa):
     window = ctk.CTk()
     window.title("Buscar Veículo")
     window.geometry("600x400")
-    window.configure(bg_color="#f0f0f0")
 
     # Adicionar cabeçalhos
-    frame = ctk.CTkFrame(window, bg_color="#ffffff", border_width=2, corner_radius=10)
+    frame = ctk.CTkFrame(window, border_width=2, corner_radius=10)
     frame.pack(fill="both", expand=True, padx=20, pady=20)
 
-    lbl_title = ctk.CTkLabel(frame, text="Buscar Veículo", font=("Helvetica", 18, "bold"), bg_color="#ffffff", text_color="#333333")
+    lbl_title = ctk.CTkLabel(frame, text="Buscar Veículo", font=("Helvetica", 18, "bold"), text_color="#333333")
     lbl_title.pack(pady=10)
 
-    lbl_vehicle_info = ctk.CTkLabel(frame, text="", anchor="w", justify="left", font=("Helvetica", 12), bg_color="#ffffff", text_color="#333333")
+    lbl_vehicle_info = ctk.CTkLabel(frame, text="", anchor="w", justify="left", font=("Helvetica", 12), text_color="#333333")
     
+    # Frame para detalhes do veículo
+    detalhes_frame = ctk.CTkFrame(frame)
+    detalhes_frame.pack(padx=20, pady=10, fill='both', expand=True)
+
     # Botões
     btn_edit = ctk.CTkButton(frame, text="EDITAR", command=on_edit, fg_color="green", hover_color="darkgreen")
     btn_delete = ctk.CTkButton(frame, text="DELETAR", command=on_delete, fg_color="red", hover_color="darkred")
