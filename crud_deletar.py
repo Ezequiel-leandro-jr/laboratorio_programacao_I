@@ -37,7 +37,7 @@ def deletar(portfolio, placa):
             ctk.CTkLabel(detalhes_frame, text=f"ANO: {veiculo.ano_fabricacao}  |  COR: {veiculo.cor}  |  PORTAS: {veiculo.portas}  |  COMBUSTÍVEL: {veiculo.combustivel}", 
                          font=("Helvetica", 12), text_color="#333333").pack(pady=2)
 
-            ctk.CTkLabel(detalhes_frame, text=f"ESTADO: {veiculo.conservacao}  |  KM: {veiculo.quilometragem:.2f} Km  |  PREÇO: R${veiculo.preco}", 
+            ctk.CTkLabel(detalhes_frame, text=f"ESTADO: {veiculo.conservacao}  |  KM: {float(veiculo.quilometragem):.2f} Km  |  PREÇO: R${veiculo.preco}", 
                          font=("Helvetica", 12), text_color="#333333").pack(pady=2)
 
             ctk.CTkLabel(detalhes_frame, text=f"STATUS: {veiculo.status}", 
