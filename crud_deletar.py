@@ -75,6 +75,7 @@ def deletar(portfolio, placa):
             voltar_menu_button = ctk.CTkButton(botoes_frame, text="Voltar ao Menu", command=app.destroy)
             voltar_menu_button.pack(side='left', padx=10)
 
+            
             app.mainloop()
 
     processar_delecao()
