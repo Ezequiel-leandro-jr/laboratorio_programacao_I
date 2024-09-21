@@ -1,7 +1,5 @@
 import customtkinter as ctk
-from crud_editar import editar
 from funcao_placa import funcao_placa
-from crud_deletar import deletar
 from cabecalhos import titulo_listar
 from tkinter import messagebox
 
@@ -49,18 +47,6 @@ def listar(portfolio):
                 lbl_total.pack(pady=10)
             lbl_total.configure(text=f'TOTAL DE VEÍCULOS: {len(portfolio)}')
 
-    def on_edit():
-        placa = funcao_placa(portfolio)
-        if placa:
-            editar(portfolio, placa)
-            update_list()
-
-    def on_delete():
-        placa = funcao_placa(portfolio)
-        if placa:
-            deletar(portfolio, placa)
-            update_list()
-
     def on_back():
         window.destroy()
 
@@ -81,12 +67,6 @@ def listar(portfolio):
     lbl_total.pack(pady=10)
 
     update_list()
-
-    btn_edit = ctk.CTkButton(frame_list, text="EDITAR VEÍCULO", command=on_edit)
-    btn_edit.pack(pady=5)
-
-    btn_delete = ctk.CTkButton(frame_list, text="DELETAR VEÍCULO", command=on_delete)
-    btn_delete.pack(pady=5)
 
     btn_back = ctk.CTkButton(frame_list, text="VOLTAR AO MENU", command=on_back)
     btn_back.pack(pady=5)

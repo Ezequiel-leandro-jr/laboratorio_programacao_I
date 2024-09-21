@@ -3,24 +3,6 @@ from funcao_busca import funcao_busca
 from funcao_placa import funcao_placa
 
 def buscar(portfolio, placa):
-    def on_edit():
-        nonlocal placa
-        new_placa = funcao_placa(portfolio, placa)
-        if new_placa:
-            placa = new_placa
-            update_vehicle_info()
-    
-    def on_delete():
-        nonlocal placa
-        # Função para deletar veículo
-        # Adicione a lógica para deletar o veículo aqui
-        window.destroy()
-    
-    def on_new_search():
-        nonlocal placa
-        placa = funcao_placa(portfolio, placa)
-        update_vehicle_info()
-    
     def on_close():
         window.destroy()
     
@@ -48,13 +30,11 @@ def buscar(portfolio, placa):
             ctk.CTkLabel(detalhes_frame, text=f"STATUS: {veiculo.status}", 
                          font=("Helvetica", 12, "italic"), text_color="#1C1C1C").pack(pady=2)
 
-            # Mostrar os botões
-            btn_edit.pack(pady=5, fill="x")
-            btn_delete.pack(pady=5, fill="x")
+            # Mostrar o botão FECHAR também para o veículo encontrado
+            btn_close.pack(pady=5, fill="x")
         else:
             lbl_vehicle_info.configure(text="ERRO: Veículo não encontrado!")
             lbl_vehicle_info.pack(pady=10, fill="both", expand=True)
-            btn_new_search.pack(pady=5, fill="x")
             btn_close.pack(pady=5, fill="x")
     
     # Criar janela principal
@@ -75,10 +55,7 @@ def buscar(portfolio, placa):
     detalhes_frame = ctk.CTkFrame(frame)
     detalhes_frame.pack(padx=20, pady=10, fill='both', expand=True)
 
-    # Botões
-    btn_edit = ctk.CTkButton(frame, text="EDITAR", command=on_edit, fg_color="green", hover_color="darkgreen")
-    btn_delete = ctk.CTkButton(frame, text="DELETAR", command=on_delete, fg_color="red", hover_color="darkred")
-    btn_new_search = ctk.CTkButton(frame, text="NOVA BUSCA", command=on_new_search, fg_color="orange", hover_color="darkorange")
+    # Botão para fechar
     btn_close = ctk.CTkButton(frame, text="FECHAR", command=on_close, fg_color="gray", hover_color="darkgray")
 
     # Atualizar informações do veículo

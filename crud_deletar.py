@@ -71,9 +71,6 @@ def deletar(portfolio, placa):
 
             botoes_frame = ctk.CTkFrame(app)
             botoes_frame.pack(pady=10)
-
-            nova_delecao_button = ctk.CTkButton(botoes_frame, text="Nova Deleção", command=lambda: (app.destroy(), deletar(portfolio, funcao_placa(portfolio, placa))))
-            nova_delecao_button.pack(side='left', padx=10)
             
             voltar_menu_button = ctk.CTkButton(botoes_frame, text="Voltar ao Menu", command=app.destroy)
             voltar_menu_button.pack(side='left', padx=10)
